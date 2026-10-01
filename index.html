@@ -19,6 +19,7 @@
       <li><a href="#inicio">Início</a></li>
       <li><a href="#caes">Nossos cães</a></li>
       <li><a href="#guia">Adoção responsável</a></li>
+      <li><a href="#faq">Dúvidas</a></li>
       <li><a href="#divulgue">Divulgue um cão</a></li>
       <li><a href="#sobre">Contato</a></li>
     </ul>
@@ -41,7 +42,7 @@
   <div class="stats">
     <div class="wrap">
       <div><strong>128</strong>cães adotados</div>
-      <div><strong>8</strong>esperando um lar</div>
+      <div><strong>12</strong>esperando um lar</div>
       <div><strong>34</strong>lares temporários</div>
       <div><strong>6</strong>anos de resgates</div>
     </div>
@@ -51,15 +52,365 @@
     <div class="wrap">
       <p class="eyebrow">Nossos cães</p>
       <h2>Eles estão prontos para ir pra casa.</h2>
+            <div class="filtros" role="group" aria-label="Filtros dos cães">
+      <fieldset>
+        <legend>Porte</legend>
+        <input type="radio" name="p" id="p-todos" checked>
+        <label for="p-todos">Todos</label>
+        <input type="radio" name="p" id="p-pequeno">
+        <label for="p-pequeno">Pequeno</label>
+        <input type="radio" name="p" id="p-medio">
+        <label for="p-medio">Médio</label>
+        <input type="radio" name="p" id="p-grande">
+        <label for="p-grande">Grande</label>
+      </fieldset>
+      <fieldset>
+        <legend>Idade</legend>
+        <input type="radio" name="i" id="i-todas" checked>
+        <label for="i-todas">Todas</label>
+        <input type="radio" name="i" id="i-filhote">
+        <label for="i-filhote">Filhote</label>
+        <input type="radio" name="i" id="i-adulto">
+        <label for="i-adulto">Adulto</label>
+        <input type="radio" name="i" id="i-idoso">
+        <label for="i-idoso">Idoso</label>
+      </fieldset>
+      </div>
       <div class="dog-grid">
-        <article class="dog-card"><div class="photo"><img src="img/caramelo.jpg" alt="Caramelo, cão médio" loading="lazy"></div><div class="body"><h3>Caramelo</h3><p>Macho · 2 anos · Médio · Bauru, SP</p><div><span class="chip">Brincalhão</span><span class="chip">Leal</span></div><a class="btn btn-whats" href="https://wa.me/5514996895439?text=Ol%C3%A1!%20Tenho%20interesse%20em%20adotar%20o%20Caramelo.">Quero adotar</a></div></article>
-        <article class="dog-card"><div class="photo"><img src="img/pipoca.jpg" alt="Pipoca, cadela média" loading="lazy"></div><div class="body"><h3>Pipoca</h3><p>Fêmea · 1 ano · Médio · Bauru, SP</p><div><span class="chip">Energética</span><span class="chip">Inteligente</span></div><a class="btn btn-whats" href="https://wa.me/5514996895439?text=Ol%C3%A1!%20Tenho%20interesse%20em%20adotar%20a%20Pipoca.">Quero adotar</a></div></article>
-        <article class="dog-card"><div class="photo"><img src="img/luna.jpg" alt="Luna, cadela grande" loading="lazy"></div><div class="body"><h3>Luna</h3><p>Fêmea · 5 anos · Grande · Botucatu, SP</p><div><span class="chip">Calma</span><span class="chip">Companheira</span></div><a class="btn btn-whats" href="https://wa.me/5514996895439?text=Ol%C3%A1!%20Tenho%20interesse%20em%20adotar%20a%20Luna.">Quero adotar</a></div></article>
-        <article class="dog-card"><div class="photo"><img src="img/nina.jpg" alt="Nina, cadela preta" loading="lazy"></div><div class="body"><h3>Nina</h3><p>Fêmea · 3 anos · Médio · Bauru, SP</p><div><span class="chip">Carinhosa</span><span class="chip">Tranquila</span></div><a class="btn btn-whats" href="https://wa.me/5514996895439?text=Ol%C3%A1!%20Tenho%20interesse%20em%20adotar%20a%20Nina.">Quero adotar</a></div></article>
-        <article class="dog-card"><div class="photo"><img src="img/thor.jpg" alt="Thor, pastor alemão" loading="lazy"></div><div class="body"><h3>Thor</h3><p>Macho · 6 anos · Grande · Bauru, SP</p><div><span class="chip">Protetor</span><span class="chip">Obediente</span></div><a class="btn btn-whats" href="https://wa.me/5514996895439?text=Ol%C3%A1!%20Tenho%20interesse%20em%20adotar%20o%20Thor.">Quero adotar</a></div></article>
-        <article class="dog-card"><div class="photo"><img src="img/biscoito.jpg" alt="Biscoito, cão pequeno" loading="lazy"></div><div class="body"><h3>Biscoito</h3><p>Macho · 4 anos · Pequeno · Marília, SP</p><div><span class="chip">Sociável</span><span class="chip">Adora água</span></div><a class="btn btn-whats" href="https://wa.me/5514996895439?text=Ol%C3%A1!%20Tenho%20interesse%20em%20adotar%20o%20Biscoito.">Quero adotar</a></div></article>
-        <article class="dog-card"><div class="photo"><img src="img/chico.jpg" alt="Chico, cocker spaniel idoso" loading="lazy"></div><div class="body"><h3>Chico</h3><p>Macho · 9 anos · Médio · Bauru, SP</p><div><span class="chip">Sereno</span><span class="chip">Ama bolinhas</span></div><a class="btn btn-whats" href="https://wa.me/5514996895439?text=Ol%C3%A1!%20Tenho%20interesse%20em%20adotar%20o%20Chico.">Quero adotar</a></div></article>
-        <article class="dog-card adotado"><div class="photo"><img src="img/frida.jpg" alt="Frida, dachshund já adotada" loading="lazy"></div><div class="body"><h3>Frida</h3><p>Fêmea · 2 anos · Pequeno · Bauru, SP</p><div><span class="chip">Já adotada 💛</span></div></div></article>
+        <article class="dog-card" data-porte="Médio" data-idade="Adulto">
+          <div class="photo">
+            <img src="img/caramelo.jpg" alt="Caramelo, cão médio" loading="lazy">
+            <span class="tag">♂ Macho</span>
+          </div>
+          <div class="body">
+            <h3>Caramelo <small>2 anos</small></h3>
+            <p>Médio · 14 kg · Bauru, SP</p>
+            <div>
+              <span class="chip">Brincalhão</span>
+              <span class="chip">Leal</span>
+            </div>
+            <ul class="saude">
+              <li>Vacinado(a)</li>
+              <li>Castrado(a)</li>
+              <li>Microchipado(a)</li>
+            </ul>
+            <details>
+              <summary>Ver história</summary>
+              <p>Apareceu numa praça, sempre no mesmo banco. Adora buscar gravetos.</p>
+            </details>
+            <a class="btn btn-whats" href="https://wa.me/5514996895439?text=Ol%C3%A1%21%20Tenho%20interesse%20em%20adotar%20o%20Caramelo.">Quero adotar</a>
+          </div>
+        </article>
+        <article class="dog-card" data-porte="Médio" data-idade="Adulto">
+          <div class="photo">
+            <img src="img/pipoca.jpg" alt="Pipoca, cão médio" loading="lazy">
+            <span class="tag">♀ Fêmea</span>
+          </div>
+          <div class="body">
+            <h3>Pipoca <small>1 ano</small></h3>
+            <p>Médio · 16 kg · Bauru, SP</p>
+            <div>
+              <span class="chip">Energética</span>
+              <span class="chip">Inteligente</span>
+            </div>
+            <ul class="saude">
+              <li>Vacinado(a)</li>
+              <li>Castrado(a)</li>
+            </ul>
+            <details>
+              <summary>Ver história</summary>
+              <p>Aprende comandos em minutos e pede caminhadas longas.</p>
+            </details>
+            <a class="btn btn-whats" href="https://wa.me/5514996895439?text=Ol%C3%A1%21%20Tenho%20interesse%20em%20adotar%20a%20Pipoca.">Quero adotar</a>
+          </div>
+        </article>
+        <article class="dog-card" data-porte="Grande" data-idade="Adulto">
+          <div class="photo">
+            <img src="img/luna.jpg" alt="Luna, cão grande" loading="lazy">
+            <span class="tag">♀ Fêmea</span>
+          </div>
+          <div class="body">
+            <h3>Luna <small>5 anos</small></h3>
+            <p>Grande · 28 kg · Botucatu, SP</p>
+            <div>
+              <span class="chip">Calma</span>
+              <span class="chip">Companheira</span>
+            </div>
+            <ul class="saude">
+              <li>Vacinado(a)</li>
+              <li>Castrado(a)</li>
+              <li>Microchipado(a)</li>
+            </ul>
+            <details>
+              <summary>Ver história</summary>
+              <p>Foi resgatada de uma corrente curta e não guardou mágoa.</p>
+            </details>
+            <a class="btn btn-whats" href="https://wa.me/5514996895439?text=Ol%C3%A1%21%20Tenho%20interesse%20em%20adotar%20a%20Luna.">Quero adotar</a>
+          </div>
+        </article>
+        <article class="dog-card" data-porte="Médio" data-idade="Adulto">
+          <div class="photo">
+            <img src="img/nina.jpg" alt="Nina, cão médio" loading="lazy">
+            <span class="tag">♀ Fêmea</span>
+          </div>
+          <div class="body">
+            <h3>Nina <small>3 anos</small></h3>
+            <p>Médio · 18 kg · Bauru, SP</p>
+            <div>
+              <span class="chip">Carinhosa</span>
+              <span class="chip">Tranquila</span>
+            </div>
+            <ul class="saude">
+              <li>Vacinado(a)</li>
+              <li>Castrado(a)</li>
+              <li>Microchipado(a)</li>
+            </ul>
+            <details>
+              <summary>Ver história</summary>
+              <p>Há mais de um ano no abrigo, espera uma chance.</p>
+            </details>
+            <a class="btn btn-whats" href="https://wa.me/5514996895439?text=Ol%C3%A1%21%20Tenho%20interesse%20em%20adotar%20a%20Nina.">Quero adotar</a>
+          </div>
+        </article>
+        <article class="dog-card" data-porte="Grande" data-idade="Adulto">
+          <div class="photo">
+            <img src="img/thor.jpg" alt="Thor, cão grande" loading="lazy">
+            <span class="tag">♂ Macho</span>
+          </div>
+          <div class="body">
+            <h3>Thor <small>6 anos</small></h3>
+            <p>Grande · 32 kg · Bauru, SP</p>
+            <div>
+              <span class="chip">Protetor</span>
+              <span class="chip">Obediente</span>
+            </div>
+            <ul class="saude">
+              <li>Vacinado(a)</li>
+              <li>Castrado(a)</li>
+              <li>Microchipado(a)</li>
+            </ul>
+            <details>
+              <summary>Ver história</summary>
+              <p>Ex-cão de guarda, conhece vários comandos e adora bola.</p>
+            </details>
+            <a class="btn btn-whats" href="https://wa.me/5514996895439?text=Ol%C3%A1%21%20Tenho%20interesse%20em%20adotar%20o%20Thor.">Quero adotar</a>
+          </div>
+        </article>
+        <article class="dog-card" data-porte="Pequeno" data-idade="Adulto">
+          <div class="photo">
+            <img src="img/biscoito.jpg" alt="Biscoito, cão pequeno" loading="lazy">
+            <span class="tag">♂ Macho</span>
+          </div>
+          <div class="body">
+            <h3>Biscoito <small>4 anos</small></h3>
+            <p>Pequeno · 11 kg · Marília, SP</p>
+            <div>
+              <span class="chip">Sociável</span>
+              <span class="chip">Adora água</span>
+            </div>
+            <ul class="saude">
+              <li>Vacinado(a)</li>
+              <li>Castrado(a)</li>
+              <li>Microchipado(a)</li>
+            </ul>
+            <details>
+              <summary>Ver história</summary>
+              <p>Foi devolvido numa mudança, mas continua sorrindo.</p>
+            </details>
+            <a class="btn btn-whats" href="https://wa.me/5514996895439?text=Ol%C3%A1%21%20Tenho%20interesse%20em%20adotar%20o%20Biscoito.">Quero adotar</a>
+          </div>
+        </article>
+        <article class="dog-card" data-porte="Médio" data-idade="Idoso">
+          <div class="photo">
+            <img src="img/chico.jpg" alt="Chico, cão médio" loading="lazy">
+            <span class="tag">♂ Macho</span>
+          </div>
+          <div class="body">
+            <h3>Chico <small>9 anos</small></h3>
+            <p>Médio · 13 kg · Bauru, SP</p>
+            <div>
+              <span class="chip">Sereno</span>
+              <span class="chip">Ama bolinhas</span>
+            </div>
+            <ul class="saude">
+              <li>Vacinado(a)</li>
+              <li>Castrado(a)</li>
+              <li>Microchipado(a)</li>
+            </ul>
+            <details>
+              <summary>Ver história</summary>
+              <p>Só quer um canto macio para envelhecer.</p>
+            </details>
+            <a class="btn btn-whats" href="https://wa.me/5514996895439?text=Ol%C3%A1%21%20Tenho%20interesse%20em%20adotar%20o%20Chico.">Quero adotar</a>
+          </div>
+        </article>
+        <article class="dog-card" data-porte="Grande" data-idade="Adulto">
+          <div class="photo">
+            <img src="img/zeus.jpg" alt="Zeus, cão grande" loading="lazy">
+            <span class="tag">♂ Macho</span>
+          </div>
+          <div class="body">
+            <h3>Zeus <small>3 anos</small></h3>
+            <p>Grande · 25 kg · Botucatu, SP</p>
+            <div>
+              <span class="chip">Aventureiro</span>
+              <span class="chip">Falante</span>
+            </div>
+            <ul class="saude">
+              <li>Vacinado(a)</li>
+              <li>Castrado(a)</li>
+              <li>Microchipado(a)</li>
+            </ul>
+            <details>
+              <summary>Ver história</summary>
+              <p>Conversa com uivos curtos. Precisa de muro alto.</p>
+            </details>
+            <a class="btn btn-whats" href="https://wa.me/5514996895439?text=Ol%C3%A1%21%20Tenho%20interesse%20em%20adotar%20o%20Zeus.">Quero adotar</a>
+          </div>
+        </article>
+        <article class="dog-card" data-porte="Pequeno" data-idade="Adulto">
+          <div class="photo">
+            <img src="img/bento.jpg" alt="Bento, cão pequeno" loading="lazy">
+            <span class="tag">♂ Macho</span>
+          </div>
+          <div class="body">
+            <h3>Bento <small>7 anos</small></h3>
+            <p>Pequeno · 8 kg · Marília, SP</p>
+            <div>
+              <span class="chip">Sossegado</span>
+              <span class="chip">Afetuoso</span>
+            </div>
+            <ul class="saude">
+              <li>Vacinado(a)</li>
+              <li>Castrado(a)</li>
+              <li>Microchipado(a)</li>
+            </ul>
+            <details>
+              <summary>Ver história</summary>
+              <p>Prefere sofá a passeio longo. Perfeito para apartamento.</p>
+            </details>
+            <a class="btn btn-whats" href="https://wa.me/5514996895439?text=Ol%C3%A1%21%20Tenho%20interesse%20em%20adotar%20o%20Bento.">Quero adotar</a>
+          </div>
+        </article>
+        <article class="dog-card" data-porte="Grande" data-idade="Idoso">
+          <div class="photo">
+            <img src="img/canela.jpg" alt="Canela, cão grande" loading="lazy">
+            <span class="tag">♀ Fêmea</span>
+          </div>
+          <div class="body">
+            <h3>Canela <small>10 anos</small></h3>
+            <p>Grande · 24 kg · Jaú, SP</p>
+            <div>
+              <span class="chip">Gentil</span>
+              <span class="chip">Paciente</span>
+            </div>
+            <ul class="saude">
+              <li>Vacinado(a)</li>
+              <li>Castrado(a)</li>
+              <li>Microchipado(a)</li>
+            </ul>
+            <details>
+              <summary>Ver história</summary>
+              <p>Veterana do abrigo, acalma os filhotes que chegam.</p>
+            </details>
+            <a class="btn btn-whats" href="https://wa.me/5514996895439?text=Ol%C3%A1%21%20Tenho%20interesse%20em%20adotar%20a%20Canela.">Quero adotar</a>
+          </div>
+        </article>
+        <article class="dog-card" data-porte="Médio" data-idade="Filhote">
+          <div class="photo">
+            <img src="img/nuvem.jpg" alt="Nuvem, cão médio" loading="lazy">
+            <span class="tag">♀ Fêmea</span>
+          </div>
+          <div class="body">
+            <h3>Nuvem <small>5 meses</small></h3>
+            <p>Médio · 8 kg · Bauru, SP</p>
+            <div>
+              <span class="chip">Fofa</span>
+              <span class="chip">Sociável</span>
+            </div>
+            <ul class="saude">
+              <li>Vacinado(a)</li>
+            </ul>
+            <details>
+              <summary>Ver história</summary>
+              <p>Bola de pelo branco que adora roubar chinelos.</p>
+            </details>
+            <a class="btn btn-whats" href="https://wa.me/5514996895439?text=Ol%C3%A1%21%20Tenho%20interesse%20em%20adotar%20a%20Nuvem.">Quero adotar</a>
+          </div>
+        </article>
+        <article class="dog-card" data-porte="Grande" data-idade="Filhote">
+          <div class="photo">
+            <img src="img/mel.jpg" alt="Mel, cão grande" loading="lazy">
+            <span class="tag">♀ Fêmea</span>
+          </div>
+          <div class="body">
+            <h3>Mel <small>4 meses</small></h3>
+            <p>Grande · 10 kg · Bauru, SP</p>
+            <div>
+              <span class="chip">Doce</span>
+              <span class="chip">Brincalhona</span>
+            </div>
+            <details>
+              <summary>Ver história</summary>
+              <p>Ainda completa o ciclo de vacinas com a família adotante.</p>
+            </details>
+            <a class="btn btn-whats" href="https://wa.me/5514996895439?text=Ol%C3%A1%21%20Tenho%20interesse%20em%20adotar%20a%20Mel.">Quero adotar</a>
+          </div>
+        </article>
+        <article class="dog-card adotado" data-porte="Pequeno" data-idade="Adulto">
+          <div class="photo">
+            <img src="img/frida.jpg" alt="Frida, cão pequeno" loading="lazy">
+            <span class="tag">♀ Fêmea</span>
+          </div>
+          <div class="body">
+            <h3>Frida <small>2 anos</small></h3>
+            <p>Pequeno · 7 kg · Bauru, SP</p>
+            <div>
+              <span class="chip">Independente</span>
+              <span class="chip">Esperta</span>
+            </div>
+            <ul class="saude">
+              <li>Vacinado(a)</li>
+              <li>Castrado(a)</li>
+              <li>Microchipado(a)</li>
+            </ul>
+            <details>
+              <summary>Ver história</summary>
+              <p>Dachshund de personalidade forte. Já encontrou um lar!</p>
+            </details>
+            <span class="chip">Já adotada 💛</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="historias">
+    <div class="wrap">
+      <p class="eyebrow">Quem adotou</p>
+      <h2>Histórias que começaram aqui.</h2>
+      <div class="quotes">
+        <figure class="quote">
+          <blockquote>O Bidu chegou com medo de tudo. Hoje dorme no pé da cama.</blockquote>
+          <figcaption>
+            <img src="img/adotado-1.jpg" alt="">
+            <strong>Mariana Costa</strong>
+          </figcaption>
+        </figure>
+        <figure class="quote">
+          <blockquote>Eu queria um filhote, mas me apaixonei por um idoso. Foi a melhor decisão.</blockquote>
+          <figcaption>
+            <img src="img/adotado-2.jpg" alt="">
+            <strong>Roberto Almeida</strong>
+          </figcaption>
+        </figure>
+        <figure class="quote">
+          <blockquote>O processo foi simples e a equipe acompanhou toda a adaptação.</blockquote>
+          <figcaption>
+            <img src="img/adotado-3.jpg" alt="">
+            <strong>Juliana e Pedro</strong>
+          </figcaption>
+        </figure>
       </div>
     </div>
   </section>
@@ -88,6 +439,33 @@
     </div>
   </section>
 
+  <section id="faq">
+    <div class="wrap">
+      <p class="eyebrow">Dúvidas frequentes</p>
+      <h2>Antes de adotar, tire suas dúvidas.</h2>
+      <details class="faq-item">
+        <summary>Quem pode adotar?</summary>
+        <p>Maiores de 18 anos, com moradia segura e disposição para cuidar do cão por toda a vida.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Adoção tem custo?</summary>
+        <p>Não cobramos pelo cão. Pedimos apenas o compromisso com ração, vacinas e carinho.</p>
+      </details>
+      <details class="faq-item">
+        <summary>E se eu morar de aluguel ou em apartamento?</summary>
+        <p>Sem problema, desde que o contrato permita animais. Alguns cães, como o Bento, são ideais para apartamento.</p>
+      </details>
+      <details class="faq-item">
+        <summary>O cão já vai vacinado e castrado?</summary>
+        <p>A maioria sim. A carteirinha de cada cão mostra o que já foi feito.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Posso devolver se não me adaptar?</summary>
+        <p>Conte com a gente antes de qualquer decisão. Nunca abandone: nós ajudamos a encontrar uma solução.</p>
+      </details>
+    </div>
+  </section>
+
   <section id="divulgue">
     <div class="wrap">
       <p class="eyebrow">Divulgue um cão</p>
@@ -98,6 +476,27 @@
         <textarea id="msg" name="text" required minlength="20" placeholder="Ex.: Paçoca, 2 anos, médio, Bauru. Contato: Ana"></textarea>
         <button class="btn btn-whats" type="submit">Enviar pelo WhatsApp</button>
       </form>
+    </div>
+  </section>
+
+  <section id="ajudar">
+    <div class="wrap">
+      <p class="eyebrow">Como ajudar</p>
+      <h2>Não pode adotar agora? Dá para ajudar de outros jeitos.</h2>
+      <div class="help-grid">
+        <article class="help">
+          <h3>Lar temporário</h3>
+          <p>Receba um cão por algumas semanas. Nós cuidamos da ração e do veterinário.</p>
+        </article>
+        <article class="help">
+          <h3>Voluntariado</h3>
+          <p>Ajude nas feiras de adoção, nos passeios e nas redes sociais.</p>
+        </article>
+        <article class="help">
+          <h3>Doações</h3>
+          <p>Ração, cobertores, remédios e qualquer valor ajudam nos resgates.</p>
+        </article>
+      </div>
     </div>
   </section>
 
@@ -113,9 +512,23 @@
   </section>
 </main>
 
-<footer class="site-footer center">
-  <p>© 2026 Patas de Casa · Projeto acadêmico de Web Design. Instituição e cães fictícios.</p>
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div>
+      <strong>🐾 Patas de Casa</strong>
+      <p>Adoção responsável de cães em Bauru e região.</p>
+    </div>
+    <nav aria-label="Rodapé">
+      <a href="#caes">Nossos cães</a>
+      <a href="#guia">Adoção responsável</a>
+      <a href="#faq">Dúvidas</a>
+      <a href="#sobre">Contato</a>
+    </nav>
+    <p>© 2026 Projeto acadêmico de Web Design. Instituição e cães fictícios. Fotos: Dog API (dog.ceo), uso educacional.</p>
+  </div>
 </footer>
+
+<a class="topo" href="#inicio" aria-label="Voltar ao topo">↑</a>
 
 <a class="whats-float" href="https://wa.me/5514996895439" aria-label="Falar com a equipe pelo WhatsApp">WA</a>
 
