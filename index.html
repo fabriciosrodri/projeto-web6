@@ -1,20 +1,32 @@
 <!DOCTYPE html>
+<!-- Documento HTML5. lang="pt-BR" informa o idioma (leitores de tela e tradutores usam isso). -->
 <html lang="pt-BR">
 <head>
+  <!-- Codificação UTF-8: garante acentos e emojis corretos. -->
   <meta charset="UTF-8">
+  <!-- Faz o site se ajustar à largura do celular (base da responsividade). -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Título que aparece na aba do navegador. -->
   <title>Patas de Casa</title>
+  <!-- Resumo do site usado por buscadores como o Google. -->
   <meta name="description" content="Patas de Casa: adoção responsável de cães resgatados em Bauru e região.">
+  <!-- Acelera o carregamento das fontes do Google, abrindo a conexão antes. -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <!-- Carrega as fontes Bricolage Grotesque (títulos) e Figtree (textos). -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@800&family=Figtree:wght@400;600;700&display=swap">
   <!-- CSS externo -->
   <link rel="stylesheet" href="style.css">
 </head>
+<!-- Corpo da página: tudo que o usuário vê fica aqui. -->
 <body>
 
+<!-- CABEÇALHO fixo no topo (o CSS usa position sticky). -->
 <header class="site-header">
+  <!-- Menu de navegação. aria-label ajuda leitores de tela. -->
   <nav class="wrap nav" aria-label="Menu principal">
+    <!-- Logotipo: link que leva ao início (âncora #inicio). -->
     <a class="logo" href="#inicio">🐾 Patas de Casa</a>
+    <!-- Lista de links do menu. Cada href="#id" rola até a seção com aquele id. -->
     <ul class="menu">
       <li><a href="#inicio">Início</a></li>
       <li><a href="#caes">Nossos cães</a></li>
@@ -26,8 +38,11 @@
   </nav>
 </header>
 
+<!-- Conteúdo principal da página (um por página). -->
 <main>
+  <!-- SEÇÃO INÍCIO (hero): primeira impressão do site. -->
   <section id="inicio" class="hero">
+    <!-- Grade de 2 colunas: texto à esquerda, foto à direita. -->
     <div class="wrap hero-grid">
       <div>
         <p class="eyebrow">Adoção responsável · Bauru e região</p>
@@ -35,10 +50,12 @@
         <p>Resgatamos, cuidamos e encontramos famílias para cães que perderam o lar.</p>
         <a class="btn" href="#caes">Conheça nossos cães</a>
       </div>
+      <!-- Foto principal. O alt descreve a imagem para quem não a enxerga. -->
       <img src="img/hero-principal.jpg" alt="Dois cães golden brincando juntos na grama">
     </div>
   </section>
 
+  <!-- FAIXA DE NÚMEROS: faixa escura com 4 estatísticas. -->
   <div class="stats">
     <div class="wrap">
       <div><strong>128</strong>cães adotados</div>
@@ -48,13 +65,17 @@
     </div>
   </div>
 
+  <!-- SEÇÃO NOSSOS CÃES: filtros e catálogo. -->
   <section id="caes">
     <div class="wrap">
       <p class="eyebrow">Nossos cães</p>
       <h2>Eles estão prontos para ir pra casa.</h2>
+            <!-- FILTROS SEM JS: botões de rádio escondidos; o CSS usa :checked e :has() para filtrar. -->
             <div class="filtros" role="group" aria-label="Filtros dos cães">
+      <!-- Agrupa os botões de um filtro. legend dá o nome do grupo (Porte ou Idade). -->
       <fieldset>
         <legend>Porte</legend>
+        <!-- Rádios com o mesmo name formam um grupo (só um marcado). O label clicável funciona como botão. -->
         <input type="radio" name="p" id="p-todos" checked>
         <label for="p-todos">Todos</label>
         <input type="radio" name="p" id="p-pequeno">
@@ -76,10 +97,14 @@
         <label for="i-idoso">Idoso</label>
       </fieldset>
       </div>
+      <!-- GRADE DE CARDS: o CSS distribui os cards automaticamente em colunas. -->
       <div class="dog-grid">
+        <!-- CARD DO CÃO. data-porte e data-idade são os valores que o filtro CSS compara. Os demais cards seguem o mesmo modelo. -->
         <article class="dog-card" data-porte="Médio" data-idade="Adulto">
+          <!-- Moldura da foto (esconde o excesso no zoom do hover) com a etiqueta de sexo. -->
           <div class="photo">
             <img src="img/caramelo.jpg" alt="Caramelo, cão médio" loading="lazy">
+            <!-- Etiqueta de sexo, posicionada sobre a foto. -->
             <span class="tag">♂ Macho</span>
           </div>
           <div class="body">
@@ -89,15 +114,18 @@
               <span class="chip">Brincalhão</span>
               <span class="chip">Leal</span>
             </div>
+            <!-- Carteirinha de saúde: o CSS coloca o ✓ antes de cada item com ::before. -->
             <ul class="saude">
               <li>Vacinado(a)</li>
               <li>Castrado(a)</li>
               <li>Microchipado(a)</li>
             </ul>
+            <!-- Botão expansível nativo do HTML: abre e fecha sem JavaScript. -->
             <details>
               <summary>Ver história</summary>
               <p>Apareceu numa praça, sempre no mesmo banco. Adora buscar gravetos.</p>
             </details>
+            <!-- Link do WhatsApp. O texto da mensagem vai codificado na URL (parâmetro text). -->
             <a class="btn btn-whats" href="https://wa.me/5514996895439?text=Ol%C3%A1%21%20Tenho%20interesse%20em%20adotar%20o%20Caramelo.">Quero adotar</a>
           </div>
         </article>
@@ -357,6 +385,7 @@
             <a class="btn btn-whats" href="https://wa.me/5514996895439?text=Ol%C3%A1%21%20Tenho%20interesse%20em%20adotar%20a%20Mel.">Quero adotar</a>
           </div>
         </article>
+        <!-- Cão já adotado: a classe adotado deixa a foto cinza e sem botão de adoção. -->
         <article class="dog-card adotado" data-porte="Pequeno" data-idade="Adulto">
           <div class="photo">
             <img src="img/frida.jpg" alt="Frida, cão pequeno" loading="lazy">
@@ -385,11 +414,14 @@
     </div>
   </section>
 
+  <!-- SEÇÃO DEPOIMENTOS de quem adotou. -->
   <section id="historias">
     <div class="wrap">
       <p class="eyebrow">Quem adotou</p>
       <h2>Histórias que começaram aqui.</h2>
+      <!-- Grade com 3 depoimentos lado a lado. -->
       <div class="quotes">
+        <!-- figure + blockquote + figcaption: tags semânticas para citação com autor. -->
         <figure class="quote">
           <blockquote>O Bidu chegou com medo de tudo. Hoje dorme no pé da cama.</blockquote>
           <figcaption>
@@ -415,10 +447,12 @@
     </div>
   </section>
 
+  <!-- SEÇÃO ADOÇÃO RESPONSÁVEL: passos e tabela de custos. -->
   <section id="guia">
     <div class="wrap">
       <p class="eyebrow">Adoção responsável</p>
       <h2>Um cão vive de 10 a 15 anos. Vale se preparar.</h2>
+      <!-- Lista ordenada (ol) com os 4 passos da adoção. -->
       <ol class="steps">
         <li><h3>Escolha o cão</h3><p>Veja os perfis e pense no porte e na energia ideais.</p></li>
         <li><h3>Fale com a equipe</h3><p>Clique em "Quero adotar" e converse pelo WhatsApp.</p></li>
@@ -426,7 +460,9 @@
         <li><h3>Termo de adoção</h3><p>Você assina e leva seu amigo pra casa.</p></li>
       </ol>
       <h3>Quanto custa ter um cão por mês</h3>
+      <!-- Caixa que permite rolar a tabela na horizontal em telas pequenas. -->
       <div class="table-wrap">
+        <!-- Tabela: thead é o cabeçalho e tbody são as linhas de dados. -->
         <table>
           <thead><tr><th>Gasto</th><th>Pequeno</th><th>Médio</th><th>Grande</th></tr></thead>
           <tbody>
@@ -439,10 +475,12 @@
     </div>
   </section>
 
+  <!-- SEÇÃO DÚVIDAS FREQUENTES. -->
   <section id="faq">
     <div class="wrap">
       <p class="eyebrow">Dúvidas frequentes</p>
       <h2>Antes de adotar, tire suas dúvidas.</h2>
+      <!-- Cada pergunta é um details: summary é a pergunta, o p é a resposta que aparece ao abrir. -->
       <details class="faq-item">
         <summary>Quem pode adotar?</summary>
         <p>Maiores de 18 anos, com moradia segura e disposição para cuidar do cão por toda a vida.</p>
@@ -466,23 +504,28 @@
     </div>
   </section>
 
+  <!-- SEÇÃO DIVULGUE UM CÃO. -->
   <section id="divulgue">
     <div class="wrap">
       <p class="eyebrow">Divulgue um cão</p>
       <h2>Conhece um cão que precisa de um lar?</h2>
       <!-- Sem JS: o formulário envia o texto para o WhatsApp pelo parâmetro "text" -->
+      <!-- Formulário sem JS: envia o texto ao WhatsApp (method get coloca o campo text na URL). -->
       <form action="https://wa.me/5514996895439" method="get" target="_blank">
         <label for="msg">Descreva o cão (nome, idade, porte, cidade e contato)</label>
+        <!-- required e minlength=20 fazem o próprio navegador validar o campo. -->
         <textarea id="msg" name="text" required minlength="20" placeholder="Ex.: Paçoca, 2 anos, médio, Bauru. Contato: Ana"></textarea>
         <button class="btn btn-whats" type="submit">Enviar pelo WhatsApp</button>
       </form>
     </div>
   </section>
 
+  <!-- SEÇÃO COMO AJUDAR: 3 cards. -->
   <section id="ajudar">
     <div class="wrap">
       <p class="eyebrow">Como ajudar</p>
       <h2>Não pode adotar agora? Dá para ajudar de outros jeitos.</h2>
+      <!-- Grade de 3 colunas (vira 1 coluna no celular). -->
       <div class="help-grid">
         <article class="help">
           <h3>Lar temporário</h3>
@@ -500,6 +543,7 @@
     </div>
   </section>
 
+  <!-- SEÇÃO CONTATO: cartão escuro com botão do WhatsApp. -->
   <section id="sobre">
     <div class="wrap">
       <div class="contact center">
@@ -512,6 +556,7 @@
   </section>
 </main>
 
+<!-- RODAPÉ: marca, links rápidos e créditos. -->
 <footer class="site-footer">
   <div class="wrap footer-grid">
     <div>
@@ -528,8 +573,10 @@
   </div>
 </footer>
 
+<!-- Botão fixo que volta ao início da página. -->
 <a class="topo" href="#inicio" aria-label="Voltar ao topo">↑</a>
 
+<!-- Botão flutuante do WhatsApp, sempre visível (position fixed no CSS). -->
 <a class="whats-float" href="https://wa.me/5514996895439" aria-label="Falar com a equipe pelo WhatsApp">WA</a>
 
 </body>
