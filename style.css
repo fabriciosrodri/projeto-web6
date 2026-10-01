@@ -4,6 +4,7 @@
    ========================================================= */
 
 /* ---------- 1. Variaveis e reset ---------- */
+/* VARIÁVEIS CSS: guardam as cores. Para mudar o visual do site todo, edite aqui. */
 :root {
   --bg: #fbf8f4;
   --ink: #1d3329;
@@ -13,10 +14,13 @@
   --forest: #2f5d4a;
   --whats: #1a8f48;
 }
+/* Reset: tira margens padrão e faz width/height incluírem padding e borda (box-sizing). */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 /* ---------- 2. Texto e cores ---------- */
+/* Rolagem suave ao clicar nos links do menu. */
 html { scroll-behavior: smooth; }              /* [EXTRA 1] rolagem suave */
+/* Estilo base: fonte, tamanho, cor do texto e fundo. */
 body {
   font-family: "Figtree", "Segoe UI", sans-serif;  /* font-family */
   font-size: 1rem;                                 /* font-size */
@@ -24,6 +28,7 @@ body {
   color: var(--ink);                               /* color */
   background-color: var(--bg);                     /* background-color */
 }
+/* Estilo comum dos títulos: fonte, peso, espaçamento entre letras. */
 h1, h2, h3 {
   font-family: "Bricolage Grotesque", "Trebuchet MS", sans-serif;
   font-weight: 800;                                /* font-weight */
@@ -31,33 +36,50 @@ h1, h2, h3 {
   letter-spacing: -0.02em;                         /* letter-spacing */
   text-wrap: balance;                              /* [EXTRA 2] quebra equilibrada */
 }
+/* Título principal com tamanho fluido (clamp: mínimo, ideal, máximo). */
 h1 { font-size: clamp(2.4rem, 6vw, 4rem); }        /* [EXTRA 3] clamp(): fonte fluida */
+/* Tamanho e margem inferior dos subtítulos. */
 h2 { font-size: 2rem; margin-bottom: 1rem; }       /* margin */
+/* Parágrafos em cinza-esverdeado, mais suave que o texto principal. */
 p { color: var(--soft); }
+/* Links sem sublinhado, na cor verde de apoio. */
 a { color: var(--forest); text-decoration: none; } /* text-decoration */
+/* Cor do texto quando o usuário o seleciona. */
 ::selection { background: var(--accent); color: #fff; } /* [EXTRA 4] cor ao selecionar texto */
+/* Imagens nunca passam da largura da caixa (responsivo). */
 img { max-width: 100%; display: block; }
+/* Pequeno rótulo em maiúsculas acima dos títulos. */
 .eyebrow { text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.85rem; font-weight: 700; color: var(--forest); } /* text-transform */
 
 /* ---------- 3. Caixa, largura e alinhamento ---------- */
+/* Contêiner central: limita a largura a 1100px e centraliza com margin auto. */
 .wrap { width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 16px; } /* width, max-width, margin */
+/* Espaço vertical das seções; scroll-margin-top evita o menu fixo cobrir o título. */
 section { padding: 4rem 0; scroll-margin-top: 80px; } /* [EXTRA 5] ancora nao fica escondida sob o menu */
+/* Centraliza o texto. */
 .center { text-align: center; }                    /* text-align */
 
 /* ---------- 4. Cabecalho fixo e menu (position, flexbox) ---------- */
+/* Cabeçalho fixo (sticky) com efeito de vidro fosco (backdrop-filter). */
 .site-header {
   position: sticky; top: 0; z-index: 50;           /* position, z-index */
   background-color: rgba(251, 248, 244, 0.85);
   backdrop-filter: blur(10px);                     /* [EXTRA 6] vidro fosco */
   border-bottom: 1px solid var(--line);            /* border */
 }
+/* Flexbox: logo à esquerda e menu à direita, alinhados ao centro vertical. */
 .nav { display: flex; justify-content: space-between; align-items: center; min-height: 70px; flex-wrap: wrap; gap: 0.5rem; } /* display:flex */
+/* Estilo do nome Patas de Casa. */
 .logo { font-family: "Bricolage Grotesque", sans-serif; font-size: 1.3rem; font-weight: 800; color: var(--ink); }
+/* Links em linha (flex), sem marcadores de lista. */
 .menu { display: flex; gap: 0.25rem; list-style: none; flex-wrap: wrap; } /* list-style */
+/* Links do menu em formato de pílula (border-radius alto). */
 .menu a { display: block; padding: 0.5rem 0.9rem; border-radius: 999px; color: var(--soft); font-weight: 600; transition: background-color 0.2s, color 0.2s; }
+/* Ao passar o mouse, o link ganha fundo e cor mais escura. */
 .menu a:hover { background-color: #f3eee6; color: var(--ink); }  /* :hover */
 
 /* ---------- 5. Botoes ---------- */
+/* Botão base: pílula laranja com sombra e transição suave. */
 .btn {
   display: inline-block; padding: 0.8rem 1.4rem;
   border-radius: 999px;                            /* border-radius */
@@ -66,70 +88,112 @@ section { padding: 4rem 0; scroll-margin-top: 80px; } /* [EXTRA 5] ancora nao fi
   cursor: pointer;                                 /* cursor */
   transition: transform 0.2s ease, box-shadow 0.2s ease; /* transition */
 }
+/* No hover o botão sobe 3px (transform) e a sombra aumenta. */
 .btn:hover { transform: translateY(-3px); box-shadow: 0 14px 24px -10px rgba(29, 51, 41, 0.5); } /* [EXTRA 7] transform */
+/* Variação verde do botão, para ações de WhatsApp. */
 .btn-whats { background-color: var(--whats); color: #fff; }
+/* Contorno visível ao navegar pelo teclado (acessibilidade). */
 .btn:focus-visible, input:focus-visible, textarea:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
 
 /* ---------- 6. Hero (grid + gradiente) ---------- */
+/* Fundo em degradê (linear-gradient) da seção inicial. */
 .hero { background: linear-gradient(135deg, #fbe7d2 0%, var(--bg) 60%); } /* [EXTRA 8] gradiente */
+/* Grid de 2 colunas iguais com espaço (gap) entre elas. */
 .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; } /* display:grid */
+/* Parágrafo do hero: margens e fonte maior. */
 .hero-grid p { margin: 1rem 0 1.5rem; font-size: 1.2rem; }
+/* Foto com topo em arco, quadrada (aspect-ratio) e sem distorção (object-fit: cover). */
 .hero img { border-radius: 200px 200px 18px 18px; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; box-shadow: 0 20px 40px -20px rgba(0,0,0,.4); } /* [EXTRA 9] aspect-ratio + object-fit */
 
 /* ---------- 7. Numeros ---------- */
+/* Faixa escura dos números. */
 .stats { background-color: var(--ink); color: var(--bg); padding: 2.5rem 0; }
+/* Grid de 4 colunas com texto centralizado. */
 .stats .wrap { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; text-align: center; }
+/* Números grandes em laranja. */
 .stats strong { display: block; font-size: 2.5rem; color: var(--accent); }
 
 /* ---------- 8. Cards dos caes ---------- */
+/* Grade responsiva: auto-fill com minmax cria quantas colunas de 240px couberem. */
 .dog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+/* Card branco com borda, cantos arredondados e transição para o hover. */
 .dog-card { background-color: #fff; border: 1px solid var(--line); border-radius: 18px; overflow: hidden; transition: transform 0.25s, box-shadow 0.25s; } /* overflow */
+/* Efeito de elevação ao passar o mouse. */
 .dog-card:hover { transform: translateY(-6px); box-shadow: 0 16px 30px -14px rgba(29, 51, 41, 0.35); }
+/* Foto com altura fixa, cortada com object-fit: cover. */
 .dog-card img { width: 100%; height: 220px; object-fit: cover; transition: transform 0.5s; }
+/* Zoom leve na foto ao passar o mouse. */
 .dog-card:hover img { transform: scale(1.08); }
+/* overflow hidden: o zoom da foto não vaza para fora da moldura. */
 .dog-card .photo { overflow: hidden; }
+/* Área de texto do card, organizada em grid com espaçamento. */
 .dog-card .body { padding: 1rem 1.2rem 1.3rem; display: grid; gap: 0.5rem; }
+/* Tamanho do nome do cão. */
 .dog-card h3 { font-size: 1.35rem; }
+/* Etiquetinha arredondada (características do cão). */
 .chip { display: inline-block; background-color: #fbe7d2; color: var(--ink); font-size: 0.8rem; font-weight: 600; padding: 0.2rem 0.65rem; border-radius: 999px; margin-right: 0.3rem; }
+/* Cão adotado: foto em preto e branco e meio transparente. */
 .adotado img { filter: grayscale(100%); opacity: 0.6; } /* [EXTRA 10] filter + opacity */
 
 /* ---------- 9. Guia, tabela e listas ---------- */
+/* Grade de 4 colunas para os passos da adoção. */
 .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; margin: 2rem 0; list-style: none; }
+/* Linha laranja no topo de cada passo. */
 .steps li { border-top: 3px solid var(--accent); padding-top: 0.8rem; }
+/* Moldura da tabela; overflow-x auto cria rolagem horizontal no celular. */
 .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 18px; background-color: #fff; }
+/* Tabela de largura total com bordas unidas (border-collapse). */
 table { width: 100%; border-collapse: collapse; min-width: 520px; }
+/* Espaçamento e linha inferior das células. */
 th, td { text-align: left; padding: 0.85rem 1rem; border-bottom: 1px solid var(--line); }
+/* Cabeçalho da tabela: fundo claro e letras maiúsculas. */
 th { background-color: #f3eee6; font-size: 0.85rem; text-transform: uppercase; }
+/* Destaca a linha da tabela sob o mouse. */
 tr:hover td { background-color: #fbf3e8; }          /* hover na linha */
 
 /* ---------- 10. Formulario ---------- */
+/* Cartão do formulário (grid com espaço entre os campos). */
 form { display: grid; gap: 1rem; max-width: 640px; background-color: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 1.5rem; }
+/* Rótulos dos campos em negrito. */
 label { font-weight: 600; }
+/* Campos herdam a fonte da página, ocupam toda a largura e têm borda arredondada. */
 input, textarea { font: inherit; width: 100%; padding: 0.7rem 0.85rem; border: 1.5px solid var(--line); border-radius: 10px; accent-color: var(--accent); }
+/* Campo em foco ganha borda verde. */
 input:focus, textarea:focus { border-color: var(--forest); outline: none; }
+/* Borda vermelha em campo inválido, só depois de preenchido (:placeholder-shown). */
 input:invalid:not(:placeholder-shown), textarea:invalid:not(:placeholder-shown) { border-color: #b3402a; } /* validacao visual so com CSS */
+/* Altura mínima e redimensionamento só na vertical. */
 textarea { min-height: 120px; resize: vertical; }
 
 /* ---------- 11. Contato, rodape e botao flutuante ---------- */
+/* Cartão escuro da seção de contato. */
 .contact { background-color: var(--ink); color: var(--bg); border-radius: 18px; padding: 2.5rem; }
+/* Texto claro sobre o fundo escuro. */
 .contact p { color: #cfdad3; margin-bottom: 1rem; }
+/* Linha superior e espaçamento do rodapé. */
 .site-footer { border-top: 1px solid var(--line); padding: 2rem 0; font-size: 0.9rem; }
+/* Botão redondo fixo no canto da tela (position fixed, grid para centralizar). */
 .whats-float { position: fixed; right: 18px; bottom: 18px; z-index: 60; width: 58px; height: 58px; border-radius: 50%; background-color: var(--whats); color: #fff; display: grid; place-items: center; font-weight: 800; box-shadow: 0 10px 24px -6px rgba(0,0,0,.4); }
 
 /* ---------- 12. Animacao ---------- */
+/* Animação: elementos surgem subindo e ganhando opacidade. */
 @keyframes surgir { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } } /* [EXTRA 11] @keyframes */
+/* Aplica a animação surgir ao hero e aos cards. */
 .hero-grid, .dog-card { animation: surgir 0.6s ease both; } /* animation */
 
 /* ---------- 13. Responsividade (@media) ---------- */
+/* RESPONSIVIDADE (tablet): grades passam para 2 colunas. */
 @media (max-width: 860px) {
   .hero-grid, .steps { grid-template-columns: 1fr 1fr; }
   .stats .wrap { grid-template-columns: 1fr 1fr; }
 }
+/* RESPONSIVIDADE (celular): grades de 1 coluna e menu centralizado. */
 @media (max-width: 560px) {
   .hero-grid, .steps { grid-template-columns: 1fr; }
   .nav { justify-content: center; }
   h2 { font-size: 1.6rem; }
 }
+/* Quem prefere menos movimento no sistema fica sem animações. */
 @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
 
 /* =========================================================
@@ -137,6 +201,7 @@ textarea { min-height: 120px; resize: vertical; }
    ========================================================= */
 
 /* ---------- 14. Filtros 100% CSS (radio + :has) ---------- */
+/* Caixa branca que contém os grupos de filtro. */
 .filtros {
   display: flex;
   flex-wrap: wrap;
@@ -147,6 +212,7 @@ textarea { min-height: 120px; resize: vertical; }
   border: 1px solid var(--line);
   border-radius: 18px;
 }
+/* Remove a borda padrão e alinha título e botões em linha. */
 .filtros fieldset {
   border: 0;
   display: flex;
@@ -154,6 +220,7 @@ textarea { min-height: 120px; resize: vertical; }
   align-items: center;
   gap: 0.4rem;
 }
+/* Título do grupo (PORTE, IDADE) em maiúsculas pequenas. */
 .filtros legend {
   float: left;
   margin-right: 0.6rem;
@@ -162,12 +229,14 @@ textarea { min-height: 120px; resize: vertical; }
   text-transform: uppercase;
   color: var(--soft);
 }
+/* Esconde o botão de rádio sem tirá-lo do teclado (opacity 0 e 1px). */
 .filtros input {
   position: absolute;
   opacity: 0;
   width: 1px;
   height: 1px;
 }
+/* O label vira um botão em formato de pílula. */
 .filtros label {
   padding: 0.4rem 0.9rem;
   border-radius: 999px;
@@ -177,10 +246,14 @@ textarea { min-height: 120px; resize: vertical; }
   cursor: pointer;
   transition: background-color 0.2s, color 0.2s;
 }
+/* Cor de destaque ao passar o mouse. */
 .filtros label:hover { background-color: #fbe7d2; }
+/* Opção marcada: fica escura. O + pega o label logo após o input. */
 .filtros input:checked + label { background-color: var(--ink); color: var(--bg); }
+/* Contorno de foco para quem navega pelo teclado. */
 .filtros input:focus-visible + label { outline: 3px solid var(--accent); outline-offset: 2px; }
 
+/* FILTRO: se um rádio está marcado (:checked), esconde (display none) os cards que não combinam. :has() permite o pai reagir ao filho. */
 #caes:has(#p-pequeno:checked) .dog-card:not([data-porte="Pequeno"]),
 #caes:has(#p-medio:checked) .dog-card:not([data-porte="Médio"]),
 #caes:has(#p-grande:checked) .dog-card:not([data-porte="Grande"]),
@@ -191,7 +264,9 @@ textarea { min-height: 120px; resize: vertical; }
 }
 
 /* ---------- 15. Cards: etiqueta, carteirinha e historia ---------- */
+/* position relative serve de referência para a etiqueta de sexo. */
 .dog-card .photo { position: relative; }
+/* Etiqueta posicionada sobre a foto (position absolute). */
 .dog-card .tag {
   position: absolute;
   top: 12px;
@@ -203,7 +278,9 @@ textarea { min-height: 120px; resize: vertical; }
   font-size: 0.78rem;
   font-weight: 700;
 }
+/* Idade menor e mais clara ao lado do nome. */
 .dog-card small { font-size: 0.85rem; color: var(--soft); font-weight: 600; }
+/* Carteirinha de saúde em linha, com quebra automática. */
 .saude {
   display: flex;
   flex-wrap: wrap;
@@ -211,30 +288,37 @@ textarea { min-height: 120px; resize: vertical; }
   list-style: none;
   font-size: 0.82rem;
 }
+/* Insere o símbolo ✓ antes de cada item sem mexer no HTML. */
 .saude li::before {
   content: "✓ ";
   color: #2f7d4f;
   font-weight: 800;
 }
+/* Linha tracejada separando a história do restante. */
 .dog-card details {
   border-top: 1px dashed var(--line);
   padding-top: 0.5rem;
 }
+/* O texto Ver história parece clicável (cursor pointer). */
 .dog-card summary {
   cursor: pointer;
   font-weight: 700;
   color: var(--forest);
 }
+/* Texto da história. */
 .dog-card details p { margin-top: 0.4rem; font-size: 0.92rem; }
+/* Botão de adoção centralizado. */
 .dog-card .btn { text-align: center; margin-top: 0.4rem; }
 
 /* ---------- 16. Depoimentos ---------- */
+/* Grade de 3 depoimentos. */
 .quotes {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
   margin-top: 2rem;
 }
+/* Cartão de depoimento. */
 .quote {
   display: grid;
   gap: 1rem;
@@ -244,6 +328,7 @@ textarea { min-height: 120px; resize: vertical; }
   border: 1px solid var(--line);
   border-radius: 18px;
 }
+/* Aspas grandes decorativas geradas por CSS. */
 .quote blockquote::before {
   content: "“";
   display: block;
@@ -252,11 +337,13 @@ textarea { min-height: 120px; resize: vertical; }
   line-height: 0.6;
   color: var(--accent);
 }
+/* Foto e nome lado a lado (flex). */
 .quote figcaption {
   display: flex;
   align-items: center;
   gap: 0.7rem;
 }
+/* Foto redonda (border-radius 50%). */
 .quote figcaption img {
   width: 44px;
   height: 44px;
@@ -265,7 +352,9 @@ textarea { min-height: 120px; resize: vertical; }
 }
 
 /* ---------- 17. FAQ com <details> ---------- */
+/* Fundo bege para diferenciar a seção de dúvidas. */
 #faq { background-color: #f3eee6; }
+/* Cartão de cada pergunta com borda lateral. */
 .faq-item {
   max-width: 760px;
   margin-top: 0.8rem;
@@ -275,37 +364,50 @@ textarea { min-height: 120px; resize: vertical; }
   border-left: 4px solid var(--line);
   transition: border-color 0.2s;
 }
+/* Quando aberta, a borda lateral fica laranja (seletor de atributo). */
 .faq-item[open] { border-left-color: var(--accent); }
+/* Pergunta clicável em negrito. */
 .faq-item summary { cursor: pointer; font-weight: 700; }
+/* Resposta com espaço acima. */
 .faq-item p { margin-top: 0.6rem; }
 
 /* ---------- 18. Como ajudar ---------- */
+/* Grade de 3 colunas. */
 .help-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
   margin-top: 2rem;
 }
+/* Cartão de ajuda com transição. */
 .help {
   padding: 1.5rem;
   border-radius: 18px;
   background-color: #f3eee6;
   transition: transform 0.25s;
 }
+/* Sobe um pouco ao passar o mouse. */
 .help:hover { transform: translateY(-4px); }
+/* nth-child escolhe o 2º cartão: fundo laranja claro. */
 .help:nth-child(2) { background-color: #fbe7d2; }
+/* 3º cartão: fundo verde claro. */
 .help:nth-child(3) { background-color: #dfece4; }
+/* Espaço abaixo do título do cartão. */
 .help h3 { margin-bottom: 0.5rem; }
 
 /* ---------- 19. Rodape e voltar ao topo ---------- */
+/* Rodapé em 3 colunas. */
 .footer-grid {
   display: grid;
   grid-template-columns: 1.2fr 1fr 1.5fr;
   gap: 2rem;
   align-items: start;
 }
+/* Links do rodapé um embaixo do outro. */
 .footer-grid nav { display: grid; gap: 0.4rem; }
+/* Sublinha o link ao passar o mouse. */
 .footer-grid a:hover { text-decoration: underline; }
+/* Botão fixo no canto esquerdo para voltar ao topo. */
 .topo {
   position: fixed;
   left: 18px;
@@ -321,9 +423,11 @@ textarea { min-height: 120px; resize: vertical; }
   font-weight: 800;
   transition: transform 0.2s;
 }
+/* Sobe levemente no hover. */
 .topo:hover { transform: translateY(-4px); }
 
 /* ---------- 20. Tema escuro automatico ---------- */
+/* TEMA ESCURO: se o sistema do usuário está no modo escuro, troca as variáveis e os fundos brancos. */
 @media (prefers-color-scheme: dark) {
   :root {
     --bg: #121a16;
@@ -345,9 +449,11 @@ textarea { min-height: 120px; resize: vertical; }
 }
 
 /* ---------- 21. Responsividade extra e impressao ---------- */
+/* RESPONSIVIDADE (novas seções): depoimentos, ajuda e rodapé em 1 coluna. */
 @media (max-width: 860px) {
   .quotes, .help-grid, .footer-grid { grid-template-columns: 1fr; }
 }
+/* IMPRESSÃO: esconde menu, botões e formulário e usa fundo branco. */
 @media print {
   .site-header, .whats-float, .topo, .filtros, form { display: none; }
   body { background-color: #fff; color: #000; }
