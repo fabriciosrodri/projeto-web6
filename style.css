@@ -131,3 +131,224 @@ textarea { min-height: 120px; resize: vertical; }
   h2 { font-size: 1.6rem; }
 }
 @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+
+/* =========================================================
+   NOVOS RECURSOS (versao 2)
+   ========================================================= */
+
+/* ---------- 14. Filtros 100% CSS (radio + :has) ---------- */
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
+  margin-top: 1.5rem;
+  padding: 1rem 1.2rem;
+  background-color: #fff;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+}
+.filtros fieldset {
+  border: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+}
+.filtros legend {
+  float: left;
+  margin-right: 0.6rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--soft);
+}
+.filtros input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+.filtros label {
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  background-color: #f3eee6;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+.filtros label:hover { background-color: #fbe7d2; }
+.filtros input:checked + label { background-color: var(--ink); color: var(--bg); }
+.filtros input:focus-visible + label { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+#caes:has(#p-pequeno:checked) .dog-card:not([data-porte="Pequeno"]),
+#caes:has(#p-medio:checked) .dog-card:not([data-porte="Médio"]),
+#caes:has(#p-grande:checked) .dog-card:not([data-porte="Grande"]),
+#caes:has(#i-filhote:checked) .dog-card:not([data-idade="Filhote"]),
+#caes:has(#i-adulto:checked) .dog-card:not([data-idade="Adulto"]),
+#caes:has(#i-idoso:checked) .dog-card:not([data-idade="Idoso"]) {
+  display: none;
+}
+
+/* ---------- 15. Cards: etiqueta, carteirinha e historia ---------- */
+.dog-card .photo { position: relative; }
+.dog-card .tag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  background-color: #fff;
+  color: var(--ink);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+.dog-card small { font-size: 0.85rem; color: var(--soft); font-weight: 600; }
+.saude {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 0.8rem;
+  list-style: none;
+  font-size: 0.82rem;
+}
+.saude li::before {
+  content: "✓ ";
+  color: #2f7d4f;
+  font-weight: 800;
+}
+.dog-card details {
+  border-top: 1px dashed var(--line);
+  padding-top: 0.5rem;
+}
+.dog-card summary {
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--forest);
+}
+.dog-card details p { margin-top: 0.4rem; font-size: 0.92rem; }
+.dog-card .btn { text-align: center; margin-top: 0.4rem; }
+
+/* ---------- 16. Depoimentos ---------- */
+.quotes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+.quote {
+  display: grid;
+  gap: 1rem;
+  align-content: space-between;
+  padding: 1.5rem;
+  background-color: #fff;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+}
+.quote blockquote::before {
+  content: "“";
+  display: block;
+  font-family: "Bricolage Grotesque", serif;
+  font-size: 3rem;
+  line-height: 0.6;
+  color: var(--accent);
+}
+.quote figcaption {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+.quote figcaption img {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* ---------- 17. FAQ com <details> ---------- */
+#faq { background-color: #f3eee6; }
+.faq-item {
+  max-width: 760px;
+  margin-top: 0.8rem;
+  padding: 1rem 1.2rem;
+  background-color: #fff;
+  border-radius: 12px;
+  border-left: 4px solid var(--line);
+  transition: border-color 0.2s;
+}
+.faq-item[open] { border-left-color: var(--accent); }
+.faq-item summary { cursor: pointer; font-weight: 700; }
+.faq-item p { margin-top: 0.6rem; }
+
+/* ---------- 18. Como ajudar ---------- */
+.help-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+.help {
+  padding: 1.5rem;
+  border-radius: 18px;
+  background-color: #f3eee6;
+  transition: transform 0.25s;
+}
+.help:hover { transform: translateY(-4px); }
+.help:nth-child(2) { background-color: #fbe7d2; }
+.help:nth-child(3) { background-color: #dfece4; }
+.help h3 { margin-bottom: 0.5rem; }
+
+/* ---------- 19. Rodape e voltar ao topo ---------- */
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1.5fr;
+  gap: 2rem;
+  align-items: start;
+}
+.footer-grid nav { display: grid; gap: 0.4rem; }
+.footer-grid a:hover { text-decoration: underline; }
+.topo {
+  position: fixed;
+  left: 18px;
+  bottom: 18px;
+  z-index: 60;
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background-color: var(--ink);
+  color: var(--bg);
+  font-weight: 800;
+  transition: transform 0.2s;
+}
+.topo:hover { transform: translateY(-4px); }
+
+/* ---------- 20. Tema escuro automatico ---------- */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #121a16;
+    --ink: #ecf1ed;
+    --soft: #a9b8af;
+    --line: #2d3b34;
+    --forest: #8cc7a8;
+  }
+  .site-header { background-color: rgba(18, 26, 22, 0.85); }
+  .dog-card, .filtros, .quote, form, .table-wrap, .faq-item, .dog-card .tag { background-color: #1a241f; }
+  .hero { background: linear-gradient(135deg, #3a2a19 0%, var(--bg) 60%); }
+  #faq, .help, th, .filtros label { background-color: #1f2b25; }
+  .help:nth-child(2) { background-color: #3a2a19; }
+  .help:nth-child(3) { background-color: #1d3329; }
+  .stats, .contact, .topo { background-color: #1f2b25; }
+  .chip { background-color: #3a2a19; color: var(--ink); }
+  .menu a:hover, tr:hover td { background-color: #1f2b25; }
+  .dog-card .tag { color: var(--ink); }
+}
+
+/* ---------- 21. Responsividade extra e impressao ---------- */
+@media (max-width: 860px) {
+  .quotes, .help-grid, .footer-grid { grid-template-columns: 1fr; }
+}
+@media print {
+  .site-header, .whats-float, .topo, .filtros, form { display: none; }
+  body { background-color: #fff; color: #000; }
+}
