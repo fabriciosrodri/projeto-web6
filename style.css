@@ -81,7 +81,7 @@ section { padding: 4rem 0; scroll-margin-top: 80px; } /* [EXTRA 5] ancora nao fi
 /* ---------- 5. Botoes ---------- */
 /* Botão base: pílula laranja com sombra e transição suave. */
 .btn {
-  display: inline-block; padding: 0.8rem 1.4rem;
+  padding: 0.8rem 1.4rem;                          /* display: veja bloco 22 (inline-flex) */
   border-radius: 999px;                            /* border-radius */
   background-color: var(--accent); color: #2a1a08; font-weight: 700;
   box-shadow: 0 8px 20px -8px rgba(29, 51, 41, 0.4); /* box-shadow */
@@ -108,8 +108,8 @@ section { padding: 4rem 0; scroll-margin-top: 80px; } /* [EXTRA 5] ancora nao fi
 /* ---------- 7. Numeros ---------- */
 /* Faixa escura dos números. */
 .stats { background-color: var(--ink); color: var(--bg); padding: 2.5rem 0; }
-/* Grid de 4 colunas com texto centralizado. */
-.stats .wrap { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; text-align: center; }
+/* Texto centralizado. A organização em colunas agora é flexbox (bloco 22). */
+.stats .wrap { text-align: center; }
 /* Números grandes em laranja. */
 .stats strong { display: block; font-size: 2.5rem; color: var(--accent); }
 
@@ -127,11 +127,11 @@ section { padding: 4rem 0; scroll-margin-top: 80px; } /* [EXTRA 5] ancora nao fi
 /* overflow hidden: o zoom da foto não vaza para fora da moldura. */
 .dog-card .photo { overflow: hidden; }
 /* Área de texto do card, organizada em grid com espaçamento. */
-.dog-card .body { padding: 1rem 1.2rem 1.3rem; display: grid; gap: 0.5rem; }
+.dog-card .body { padding: 1rem 1.2rem 1.3rem; } /* layout flex: bloco 22 */
 /* Tamanho do nome do cão. */
 .dog-card h3 { font-size: 1.35rem; }
 /* Etiquetinha arredondada (características do cão). */
-.chip { display: inline-block; background-color: #fbe7d2; color: var(--ink); font-size: 0.8rem; font-weight: 600; padding: 0.2rem 0.65rem; border-radius: 999px; margin-right: 0.3rem; }
+.chip { display: inline-block; background-color: #fbe7d2; color: var(--ink); font-size: 0.8rem; font-weight: 600; padding: 0.2rem 0.65rem; border-radius: 999px; }
 /* Cão adotado: foto em preto e branco e meio transparente. */
 .adotado img { filter: grayscale(100%); opacity: 0.6; } /* [EXTRA 10] filter + opacity */
 
@@ -185,7 +185,6 @@ textarea { min-height: 120px; resize: vertical; }
 /* RESPONSIVIDADE (tablet): grades passam para 2 colunas. */
 @media (max-width: 860px) {
   .hero-grid, .steps { grid-template-columns: 1fr 1fr; }
-  .stats .wrap { grid-template-columns: 1fr 1fr; }
 }
 /* RESPONSIVIDADE (celular): grades de 1 coluna e menu centralizado. */
 @media (max-width: 560px) {
@@ -308,7 +307,7 @@ textarea { min-height: 120px; resize: vertical; }
 /* Texto da história. */
 .dog-card details p { margin-top: 0.4rem; font-size: 0.92rem; }
 /* Botão de adoção centralizado. */
-.dog-card .btn { text-align: center; margin-top: 0.4rem; }
+.dog-card .btn { text-align: center; }
 
 /* ---------- 16. Depoimentos ---------- */
 /* Grade de 3 depoimentos. */
@@ -372,11 +371,8 @@ textarea { min-height: 120px; resize: vertical; }
 .faq-item p { margin-top: 0.6rem; }
 
 /* ---------- 18. Como ajudar ---------- */
-/* Grade de 3 colunas. */
+/* Espaço acima dos cartões. A organização em colunas é flexbox (bloco 22). */
 .help-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
   margin-top: 2rem;
 }
 /* Cartão de ajuda com transição. */
@@ -403,8 +399,7 @@ textarea { min-height: 120px; resize: vertical; }
   gap: 2rem;
   align-items: start;
 }
-/* Links do rodapé um embaixo do outro. */
-.footer-grid nav { display: grid; gap: 0.4rem; }
+/* Links do rodapé um embaixo do outro: flex-direction: column (bloco 22). */
 /* Sublinha o link ao passar o mouse. */
 .footer-grid a:hover { text-decoration: underline; }
 /* Botão fixo no canto esquerdo para voltar ao topo. */
@@ -451,8 +446,108 @@ textarea { min-height: 120px; resize: vertical; }
 /* ---------- 21. Responsividade extra e impressao ---------- */
 /* RESPONSIVIDADE (novas seções): depoimentos, ajuda e rodapé em 1 coluna. */
 @media (max-width: 860px) {
-  .quotes, .help-grid, .footer-grid { grid-template-columns: 1fr; }
+  .quotes, .footer-grid { grid-template-columns: 1fr; }
 }
+/* =========================================================
+   22. FLEXBOX: 20 propriedades para organizar de forma responsiva
+   Cada propriedade pedida está marcada com [FLEX n].
+   (Propriedades que se repetem em outros elementos aparecem como "reuso".)
+   ========================================================= */
+
+/* Botões do topo: dois botões lado a lado que quebram de linha no celular. */
+.hero-actions {
+  display: flex;               /* [FLEX 1]  display: flex -> cria o container flex */
+  flex-wrap: wrap;             /* [FLEX 4]  flex-wrap -> permite quebrar de linha (responsivo) */
+  align-items: center;         /* [FLEX 7]  align-items -> alinha os botões no eixo vertical */
+  gap: 1rem;                   /* [FLEX 9]  gap -> espaço entre os botões */
+  margin-top: 0.5rem;
+}
+
+/* Todo botão vira um mini container flex em linha e centraliza o texto. */
+.btn {
+  display: inline-flex;        /* [FLEX 2]  display: inline-flex -> flex que não ocupa a linha toda */
+  justify-content: center;     /* reuso: centraliza no eixo horizontal */
+  align-items: center;         /* reuso: centraliza no eixo vertical */
+  gap: 0.5rem;                 /* reuso */
+}
+
+/* Botão secundário (só o contorno). */
+.btn-outline { background-color: transparent; color: var(--forest); border: 2px solid var(--forest); box-shadow: none; }
+.contact .btn-outline { color: #fff; border-color: #fff; }
+
+/* Etiquetas (chips) dos cães: quebram de linha quando faltar espaço. */
+.chips {
+  display: flex;               /* reuso */
+  flex-flow: row wrap;         /* [FLEX 5]  flex-flow -> atalho de flex-direction + flex-wrap */
+  row-gap: 0.4rem;             /* [FLEX 10] row-gap -> espaço entre as LINHAS */
+  column-gap: 0.3rem;          /* [FLEX 11] column-gap -> espaço entre as COLUNAS */
+}
+
+/* Cartão do cão: coluna flex para que o botão "Quero adotar" fique sempre no rodapé. */
+.dog-card {
+  display: flex;               /* reuso */
+  flex-direction: column;      /* [FLEX 3]  flex-direction -> empilha foto e texto */
+}
+.dog-card .body {
+  flex: 1;                     /* [FLEX 18] flex -> atalho de grow/shrink/basis: o corpo ocupa o espaço que sobra */
+  display: flex;               /* reuso */
+  flex-direction: column;      /* reuso */
+  gap: 0.5rem;
+}
+.dog-card .body .btn {
+  align-self: stretch;         /* [FLEX 19] align-self -> este item ocupa toda a largura do card */
+  margin-top: auto;            /* margem automática empurra o botão para baixo */
+}
+.dog-card .body > .chip {
+  place-self: start;           /* [FLEX 20] place-self -> atalho de align-self + justify-self (o chip não estica) */
+}
+
+/* Faixa de números: 4 itens que se reorganizam sozinhos (sem @media para as colunas). */
+.stats .wrap {
+  display: flex;               /* reuso */
+  flex-wrap: wrap;             /* reuso */
+  justify-content: space-around; /* [FLEX 6] justify-content -> distribui o espaço entre os itens */
+  gap: 1rem;                   /* reuso */
+}
+.stats .wrap > div {
+  flex: 1 1 130px;             /* [FLEX 18] flex: cresce (1), encolhe (1) e começa com 130px */
+  display: flex;               /* reuso */
+  flex-direction: column;      /* reuso: número em cima, texto embaixo */
+  place-items: center;         /* [FLEX 13] place-items -> atalho de align-items (+ justify-items) */
+}
+
+/* Cartões "Como ajudar": cada um cresce, encolhe e parte de 260px; quebram de linha sozinhos. */
+.help-grid {
+  display: flex;               /* reuso */
+  flex-wrap: wrap;             /* reuso */
+  justify-content: center;     /* reuso */
+  gap: 1.5rem;                 /* reuso */
+}
+.help {
+  flex-grow: 1;                /* [FLEX 15] flex-grow -> pode crescer para ocupar espaço livre */
+  flex-shrink: 1;              /* [FLEX 16] flex-shrink -> pode encolher se faltar espaço */
+  flex-basis: 260px;           /* [FLEX 17] flex-basis -> tamanho inicial antes de crescer/encolher */
+}
+
+/* Botões do cartão de contato centralizados no eixo horizontal e vertical. */
+.contact-actions {
+  display: flex;               /* reuso */
+  flex-wrap: wrap;             /* reuso */
+  place-content: center;       /* [FLEX 12] place-content -> atalho de align-content + justify-content */
+  gap: 1rem;                   /* reuso */
+}
+
+/* Filtros: se as linhas quebrarem, ficam coladas no topo da caixa. */
+.filtros { align-content: flex-start; } /* [FLEX 8] align-content -> alinha as LINHAS do container com quebra */
+
+/* Links do rodapé em coluna. */
+.footer-grid nav { display: flex; flex-direction: column; gap: 0.4rem; } /* reuso */
+
+/* Celular: o número mais importante ("esperando um lar") sobe para o primeiro lugar. */
+@media (max-width: 560px) {
+  .stats .wrap > div:nth-child(2) { order: -1; } /* [FLEX 14] order -> muda a ordem visual (padrão é 0) */
+}
+
 /* IMPRESSÃO: esconde menu, botões e formulário e usa fundo branco. */
 @media print {
   .site-header, .whats-float, .topo, .filtros, form { display: none; }
