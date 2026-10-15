@@ -12,7 +12,7 @@
   --line: #e4ddd2;
   --accent: #e8903a;
   --forest: #2f5d4a;
-  --whats: #1a8f48;
+  --whats: #15803d; /* verde escurecido: branco sobre ele tem contraste 5,0:1 (o mínimo é 4,5:1) */
 }
 /* Reset: tira margens padrão e faz width/height incluírem padding e borda (box-sizing). */
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -124,8 +124,8 @@ section { padding: 4rem 0; scroll-margin-top: 80px; } /* [EXTRA 5] ancora nao fi
 .dog-card img { width: 100%; height: 220px; object-fit: cover; transition: transform 0.5s; }
 /* Zoom leve na foto ao passar o mouse. */
 .dog-card:hover img { transform: scale(1.08); }
-/* overflow hidden: o zoom da foto não vaza para fora da moldura. */
-.dog-card .photo { overflow: hidden; }
+/* overflow hidden: o zoom da foto não vaza para fora da moldura. position relative: referência para a etiqueta de sexo. */
+.dog-card .photo { overflow: hidden; position: relative; }
 /* Área de texto do card, organizada em grid com espaçamento. */
 .dog-card .body { padding: 1rem 1.2rem 1.3rem; } /* layout flex: bloco 22 */
 /* Tamanho do nome do cão. */
@@ -235,8 +235,11 @@ textarea { min-height: 120px; resize: vertical; }
   width: 1px;
   height: 1px;
 }
-/* O label vira um botão em formato de pílula. */
+/* O label vira um botão em formato de pílula (min-height 44px: área de toque confortável no celular). */
 .filtros label {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
   padding: 0.4rem 0.9rem;
   border-radius: 999px;
   background-color: #f3eee6;
@@ -263,8 +266,6 @@ textarea { min-height: 120px; resize: vertical; }
 }
 
 /* ---------- 15. Cards: etiqueta, carteirinha e historia ---------- */
-/* position relative serve de referência para a etiqueta de sexo. */
-.dog-card .photo { position: relative; }
 /* Etiqueta posicionada sobre a foto (position absolute). */
 .dog-card .tag {
   position: absolute;
@@ -421,26 +422,32 @@ textarea { min-height: 120px; resize: vertical; }
 /* Sobe levemente no hover. */
 .topo:hover { transform: translateY(-4px); }
 
-/* ---------- 20. Tema escuro automatico ---------- */
-/* TEMA ESCURO: se o sistema do usuário está no modo escuro, troca as variáveis e os fundos brancos. */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #121a16;
-    --ink: #ecf1ed;
-    --soft: #a9b8af;
-    --line: #2d3b34;
-    --forest: #8cc7a8;
-  }
-  .site-header { background-color: rgba(18, 26, 22, 0.85); }
-  .dog-card, .filtros, .quote, form, .table-wrap, .faq-item, .dog-card .tag { background-color: #1a241f; }
-  .hero { background: linear-gradient(135deg, #3a2a19 0%, var(--bg) 60%); }
-  #faq, .help, th, .filtros label { background-color: #1f2b25; }
-  .help:nth-child(2) { background-color: #3a2a19; }
-  .help:nth-child(3) { background-color: #1d3329; }
-  .stats, .contact, .topo { background-color: #1f2b25; }
-  .chip { background-color: #3a2a19; color: var(--ink); }
-  .menu a:hover, tr:hover td { background-color: #1f2b25; }
-  .dog-card .tag { color: var(--ink); }
+/* ---------- 20. Tema escuro ---------- */
+/* O <html> recebe data-tema="claro" ou data-tema="escuro" (pelo script no <head> e pelo botão de tema).
+   Sem escolha salva, o tema inicial é o do sistema (prefers-color-scheme). */
+
+/* Cores base do tema escuro: trocam as variáveis. */
+:root[data-tema="escuro"] {
+  --bg: #121a16;
+  --ink: #ecf1ed;
+  --soft: #a9b8af;
+  --line: #2d3b34;
+  --forest: #8cc7a8;
+}
+
+/* Fundos e textos do tema escuro. O "&" representa o elemento de cima (:where(...)).
+   O :where() não soma peso ao seletor, então estas regras têm a mesma força que tinham no @media. */
+:where(:root[data-tema="escuro"]) {
+  & .site-header { background-color: rgba(18, 26, 22, 0.85); }
+  & .dog-card, & .filtros, & .quote, & form, & .table-wrap, & .faq-item, & .dog-card .tag { background-color: #1a241f; }
+  & .hero { background: linear-gradient(135deg, #3a2a19 0%, var(--bg) 60%); }
+  & #faq, & .help, & th, & .filtros label { background-color: #1f2b25; }
+  & .help:nth-child(2) { background-color: #3a2a19; }
+  & .help:nth-child(3) { background-color: #1d3329; }
+  & .stats, & .contact, & .topo { background-color: #1f2b25; color: var(--ink); }
+  & .chip { background-color: #3a2a19; color: var(--ink); }
+  & .menu a:hover, & tr:hover td { background-color: #1f2b25; }
+  & .dog-card .tag { color: var(--ink); }
 }
 
 /* ---------- 21. Responsividade extra e impressao ---------- */
@@ -452,6 +459,9 @@ textarea { min-height: 120px; resize: vertical; }
    22. FLEXBOX: 20 propriedades para organizar de forma responsiva
    Cada propriedade pedida está marcada com [FLEX n].
    (Propriedades que se repetem em outros elementos aparecem como "reuso".)
+   Atenção: vários seletores deste bloco (.btn, .dog-card, .help...) já existem em blocos
+   anteriores. Isso é proposital: aqui ficam só as regras de flexbox, juntas para consulta.
+   O navegador junta as duas regras e, em caso de conflito, vale a última escrita.
    ========================================================= */
 
 /* Botões do topo: dois botões lado a lado que quebram de linha no celular. */
@@ -546,6 +556,81 @@ textarea { min-height: 120px; resize: vertical; }
 /* Celular: o número mais importante ("esperando um lar") sobe para o primeiro lugar. */
 @media (max-width: 560px) {
   .stats .wrap > div:nth-child(2) { order: -1; } /* [FLEX 14] order -> muda a ordem visual (padrão é 0) */
+}
+
+/* =========================================================
+   24. RESPONSIVIDADE EXTRA + ESTILOS DAS FUNCIONALIDADES EM JAVASCRIPT
+   ========================================================= */
+
+/* O atributo hidden sempre esconde, mesmo que outra regra defina display (flex, grid...). */
+[hidden] { display: none !important; }
+
+/* ---- Menu hambúrguer ---- */
+/* Botão ☰: escondido no computador. Em telas pequenas ele aparece (veja o @media abaixo). */
+.menu-toggle { display: none; min-width: 44px; min-height: 44px; border: 1px solid var(--line); border-radius: 12px; background-color: transparent; color: var(--ink); font-size: 1.4rem; line-height: 1; cursor: pointer; }
+/* Até 1100px de largura o menu não cabe em uma linha: ele vira um painel que o botão abre e fecha.
+   A classe "js" garante que, sem JavaScript, o menu continua visível como antes. */
+@media (max-width: 1100px) {
+  .js .menu-toggle { display: inline-flex; align-items: center; justify-content: center; }
+  .js .nav { justify-content: space-between; }
+  .js .menu { display: none; flex-direction: column; width: 100%; padding-bottom: 0.75rem; }
+  .js .menu.open { display: flex; }
+  .js .menu a { padding: 0.75rem 0.9rem; }
+}
+
+/* ---- Botão "voltar ao topo": só aparece depois de rolar a página (classe "visivel" vem do JavaScript) ---- */
+.js .topo { opacity: 0; pointer-events: none; transition: opacity 0.25s, transform 0.2s; }
+.js .topo.visivel { opacity: 1; pointer-events: auto; }
+
+/* ---- Busca por nome ---- */
+.busca { display: grid; gap: 0.4rem; max-width: 420px; margin-top: 1.5rem; }
+.busca label { font-weight: 700; }
+.busca input { width: 100%; min-height: 44px; padding: 0.6rem 1rem; border: 1px solid var(--line); border-radius: 999px; background-color: #fff; color: var(--ink); font: inherit; }
+
+/* ---- Contador de resultados e botão "Limpar filtros" ---- */
+.resultado { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.5rem 1rem; margin-top: 1rem; }
+#contagem { color: var(--soft); font-weight: 600; }
+.btn-link { min-height: 44px; padding: 0 0.5rem; border: 0; background: none; color: var(--forest); font: inherit; font-weight: 700; text-decoration: underline; cursor: pointer; }
+.sem-resultado { margin-top: 1.5rem; padding: 1.2rem; border: 1px dashed var(--line); border-radius: 18px; text-align: center; color: var(--soft); }
+/* Card escondido pela busca (a classe é colocada pelo JavaScript). */
+.dog-card.sem-busca { display: none; }
+
+/* ---- Formulário: contador, erro e confirmação ---- */
+.ajuda { font-size: 0.9rem; color: var(--soft); }
+.erro { font-weight: 600; color: #b3402a; }
+.erro:empty { display: none; }
+.sucesso { padding: 0.8rem 1rem; border-radius: 12px; background-color: #e3f3e9; color: #14532d; font-weight: 600; }
+form textarea.invalido { border-color: #b3402a; outline-color: #b3402a; }
+
+/* ---- Alvos de toque: botões e links com pelo menos 44px de altura (dedo no celular) ---- */
+summary { padding-block: 0.65rem; cursor: pointer; }
+/* A tabela que rola de lado pode receber foco do teclado: mostra o contorno quando focada. */
+.table-wrap:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.footer-grid nav a { padding: 0.6rem 0; }
+
+/* ---- Botão de alternar tema ---- */
+/* Escondido sem JavaScript (ele não funcionaria). Com JavaScript, aparece em todas as telas. */
+.tema-toggle { display: none; min-width: 44px; min-height: 44px; border: 1px solid var(--line); border-radius: 12px; background-color: transparent; color: var(--ink); font-size: 1.2rem; line-height: 1; cursor: pointer; }
+.js .tema-toggle { display: inline-flex; align-items: center; justify-content: center; }
+/* Computador: menu e botão de tema ficam juntos, à direita do logotipo. */
+@media (min-width: 1101px) {
+  .menu { margin-left: auto; }
+  .tema-toggle { margin-left: 1rem; }
+}
+/* Celular e tablet: logotipo à esquerda; botão de tema e ☰ juntos, à direita; o menu aberto vai para a linha de baixo. */
+@media (max-width: 1100px) {
+  .js .logo { order: 1; }
+  .js .tema-toggle { order: 2; margin-left: auto; }
+  .js .menu-toggle { order: 3; }
+  .js .menu { order: 4; }
+}
+
+/* ---- Tema escuro dos novos elementos ---- */
+:where(:root[data-tema="escuro"]) {
+  & .busca input { background-color: #1a241f; }
+  & .erro { color: #ff9a85; }
+  & .sucesso { background-color: #1d3329; color: #bfe8cf; }
+  & form textarea.invalido { border-color: #ff9a85; outline-color: #ff9a85; }
 }
 
 /* IMPRESSÃO: esconde menu, botões e formulário e usa fundo branco. */
