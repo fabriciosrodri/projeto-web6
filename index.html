@@ -16,6 +16,13 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@800&family=Figtree:wght@400;600;700&display=swap">
   <!-- CSS externo -->
   <link rel="stylesheet" href="style.css">
+  <!-- Define o tema ANTES da página ser desenhada (evita "piscar" de cor): usa o tema salvo; sem escolha, o do sistema. -->
+  <script>
+    try {
+      var tema = localStorage.getItem("tema") || (matchMedia("(prefers-color-scheme: dark)").matches ? "escuro" : "claro");
+      document.documentElement.setAttribute("data-tema", tema);
+    } catch (erro) { /* sem localStorage: o JavaScript do script.js define o tema depois */ }
+  </script>
 </head>
 <!-- Corpo da página: tudo que o usuário vê fica aqui. -->
 <body>
@@ -26,8 +33,10 @@
   <nav class="wrap nav" aria-label="Menu principal">
     <!-- Logotipo: link que leva ao início (âncora #inicio). -->
     <a class="logo" href="#inicio">🐾 Patas de Casa</a>
+    <!-- Botão hambúrguer (☰): aparece só em telas pequenas. O JavaScript abre e fecha o menu. -->
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Abrir menu">☰</button>
     <!-- Lista de links do menu. Cada href="#id" rola até a seção com aquele id. -->
-    <ul class="menu">
+    <ul class="menu" id="menu">
       <li><a href="#inicio">Início</a></li>
       <li><a href="#caes">Nossos cães</a></li>
       <li><a href="#guia">Adoção responsável</a></li>
@@ -35,6 +44,8 @@
       <li><a href="#divulgue">Divulgue um cão</a></li>
       <li><a href="#sobre">Contato</a></li>
     </ul>
+    <!-- Botão de tema: alterna entre claro e escuro (o JavaScript troca o ícone e salva a escolha). -->
+    <button class="tema-toggle" type="button" aria-label="Ativar tema escuro">🌙</button>
   </nav>
 </header>
 
@@ -73,6 +84,11 @@
     <div class="wrap">
       <p class="eyebrow">Nossos cães</p>
       <h2>Eles estão prontos para ir pra casa.</h2>
+      <!-- BUSCA POR NOME: o JavaScript esconde os cards que não têm o texto digitado. -->
+      <div class="busca">
+        <label for="busca-nome">Buscar cão pelo nome</label>
+        <input type="search" id="busca-nome" placeholder="Ex.: Thor" autocomplete="off">
+      </div>
             <!-- FILTROS SEM JS: botões de rádio escondidos; o CSS usa :checked e :has() para filtrar. -->
             <div class="filtros" role="group" aria-label="Filtros dos cães">
       <!-- Agrupa os botões de um filtro. legend dá o nome do grupo (Porte ou Idade). -->
@@ -100,6 +116,14 @@
         <label for="i-idoso">Idoso</label>
       </fieldset>
       </div>
+      <!-- RESULTADO: o JavaScript escreve aqui quantos cães aparecem (aria-live avisa leitores de tela). -->
+      <div class="resultado">
+        <p id="contagem" aria-live="polite">13 cães encontrados</p>
+        <!-- Botão que volta busca e filtros ao normal. Fica escondido (hidden) até haver filtro ligado. -->
+        <button type="button" id="limpar-filtros" class="btn-link" hidden>Limpar filtros</button>
+      </div>
+      <!-- Aviso mostrado só quando nenhum cão combina com a busca e os filtros. -->
+      <p id="sem-resultado" class="sem-resultado" hidden>Nenhum cão encontrado com esses filtros. Tente limpar a busca.</p>
       <!-- GRADE DE CARDS: o CSS distribui os cards automaticamente em colunas. -->
       <div class="dog-grid">
         <!-- CARD DO CÃO. data-porte e data-idade são os valores que o filtro CSS compara. Os demais cards seguem o mesmo modelo. -->
@@ -129,7 +153,7 @@
               <p>Apareceu numa praça, sempre no mesmo banco. Adora buscar gravetos.</p>
             </details>
             <!-- Link do WhatsApp. O texto da mensagem vai codificado na URL (parâmetro text). -->
-            <a class="btn btn-whats" href="https://wa.me/5514996895439?text=Ol%C3%A1%21%20Tenho%20interesse%20em%20adotar%20o Leandro.">Quero adotar</a>
+            <a class="btn btn-whats" href="https://wa.me/5514996895439?text=Ol%C3%A1%21%20Tenho%20interesse%20em%20adotar%20o%20Caramelo.">Quero adotar</a>
           </div>
         </article>
         <article class="dog-card" data-porte="Médio" data-idade="Adulto">
@@ -464,7 +488,7 @@
       </ol>
       <h3>Quanto custa ter um cão por mês</h3>
       <!-- Caixa que permite rolar a tabela na horizontal em telas pequenas. -->
-      <div class="table-wrap">
+      <div class="table-wrap" tabindex="0" role="region" aria-label="Tabela de custos mensais (use as setas do teclado para rolar)">
         <!-- Tabela: thead é o cabeçalho e tbody são as linhas de dados. -->
         <table>
           <thead><tr><th>Gasto</th><th>Pequeno</th><th>Médio</th><th>Grande</th></tr></thead>
@@ -514,16 +538,22 @@
       <h2>Conhece um cão que precisa de um lar?</h2>
       <!-- Sem JS: o formulário envia o texto para o WhatsApp pelo parâmetro "text" -->
       <!-- Formulário sem JS: envia o texto ao WhatsApp (method get coloca o campo text na URL). -->
-      <form action="https://wa.me/5514996895439" method="get" target="_blank">
+      <form id="form-divulgue" action="https://wa.me/5514996895439" method="get" target="_blank">
         <label for="msg">Descreva o cão (nome, idade, porte, cidade e contato)</label>
         <!-- required e minlength=20 fazem o próprio navegador validar o campo. -->
-        <textarea id="msg" name="text" required minlength="20" placeholder="Ex.: Paçoca, 2 anos, médio, Sorocaba. Contato: Ana"></textarea>
+        <textarea id="msg" name="text" required minlength="20" placeholder="Ex.: Paçoca, 2 anos, médio, Sorocaba. Contato: Ana" aria-describedby="msg-ajuda msg-erro"></textarea>
+        <!-- Contador de caracteres, atualizado pelo JavaScript a cada letra digitada. -->
+        <p id="msg-ajuda" class="ajuda"><span id="msg-contador">0</span> de 20 caracteres no mínimo</p>
+        <!-- Mensagem de erro escrita pelo JavaScript (role="alert" faz leitores de tela avisarem). -->
+        <p id="msg-erro" class="erro" role="alert"></p>
         <button class="btn btn-whats" type="submit">Enviar pelo WhatsApp</button>
+        <!-- Confirmação mostrada depois de um envio válido. -->
+        <p id="msg-sucesso" class="sucesso" hidden>Pronto! Abrimos o WhatsApp em outra aba para você enviar a mensagem.</p>
       </form>
     </div>
   </section>
 
-  <!-- SEÇÃO COMO AJUDAR: 3 cards. -->--
+  <!-- SEÇÃO COMO AJUDAR: 3 cards. -->
   <section id="ajudar">
     <div class="wrap">
       <p class="eyebrow">Como ajudar</p>
@@ -575,15 +605,21 @@
       <a href="#faq">Dúvidas</a>
       <a href="#sobre">Contato</a>
     </nav>
-    <p>© 2026 Projeto acadêmico de Web Design. Instituição e cães fictícios. Fotos: Dog API (dog.ceo), uso educacional.</p>
+    <p>© <span id="ano">2026</span> Projeto acadêmico de Web Design. Instituição e cães fictícios. Fotos: Dog API (dog.ceo), uso educacional.</p>
   </div>
 </footer>
 
-<!-- Botão fixo que volta ao início da página. -->
-<a class="topo" href="#inicio" aria-label="Voltar ao topo">↑</a>
+<!-- Atalhos fixos na tela (position fixed no CSS). O <aside> coloca os dois botões em uma região da página, o que ajuda leitores de tela. -->
+<aside aria-label="Atalhos">
+  <!-- Botão fixo que volta ao início da página. -->
+  <a class="topo" href="#inicio" aria-label="Voltar ao topo">↑</a>
 
-<!-- Botão flutuante do WhatsApp, sempre visível (position fixed no CSS). -->
-<a class="whats-float" href="https://wa.me/5514996895439" aria-label="Falar com a equipe pelo WhatsApp">WA</a>
+  <!-- Botão flutuante do WhatsApp, sempre visível. -->
+  <a class="whats-float" href="https://wa.me/5514996895439" aria-label="Falar com a equipe pelo WhatsApp">WA</a>
+</aside>
+
+<!-- JavaScript: fica no fim do body para o HTML já existir quando o script rodar. -->
+<script src="js/script.js"></script>
 
 </body>
 </html>
