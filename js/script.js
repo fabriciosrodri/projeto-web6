@@ -6,7 +6,7 @@
    3. Busca de cães pelo nome
    4. Contador de resultados, aviso "nenhum cão" e botão "Limpar filtros"
    5. Validação do formulário "Divulgue um cão" (contador de letras e erro)
-   6. WhatsApp configurado em um lugar só (mensagem de cada cão montada pelo nome)
+   6. WhatsApp configurado em um lugar só (mensagem de cada cão montada pelo nome, idade e raça)
    7. Números animados na faixa de estatísticas
    8. Ano do rodapé automático
    9. Botão de tema claro/escuro (a escolha fica salva no navegador)
@@ -32,6 +32,11 @@ const WHATSAPP = "5514996895439";
 // Quantidade mínima de caracteres do formulário "Divulgue um cão".
 const MINIMO_CARACTERES = 20;
 
+// Interruptores da mensagem do WhatsApp de cada cão: true = entra na mensagem, false = fica de fora.
+// Para testar outra combinação, troque só o true/false abaixo e recarregue a página.
+const MENSAGEM_COM_RACA = true;
+const MENSAGEM_COM_IDADE = false;
+
 // Monta um link do WhatsApp com a mensagem já escrita.
 // encodeURIComponent troca espaços e acentos por códigos que cabem em uma URL.
 // O "?text=" é o pedaço do endereço que o WhatsApp usa para preencher a mensagem.
@@ -50,6 +55,13 @@ function pegarNome(card) {
 // Se o card não tiver ficha, devolve texto vazio e a busca continua funcionando só pelo nome.
 function pegarRaca(card) {
   const item = card.querySelector(".raca");
+  return item ? item.textContent.trim() : "";
+}
+
+// Devolve a idade do cão de um card (texto do <small> dentro do <h3>, por exemplo "2 anos").
+// Se o card não tiver idade, devolve texto vazio e a mensagem do WhatsApp simplesmente não a cita.
+function pegarIdade(card) {
+  const item = card.querySelector("h3 small");
   return item ? item.textContent.trim() : "";
 }
 
@@ -260,7 +272,16 @@ function iniciarWhatsApp() {
       const femea = card.querySelector(".tag").textContent.indexOf("Fêmea") !== -1;
       const artigo = femea ? "a" : "o";
       const pronome = femea ? "adotá-la" : "adotá-lo";
-      link.href = linkWhats("Olá! Vi " + artigo + " " + nome + " no site Patas de Casa e tenho interesse em " + pronome + ". Podemos conversar?");
+      // Idade e raça ajudam a equipe a saber de QUAL cão se trata (pode haver dois com o mesmo nome).
+      // Só entram na mensagem os dados que existirem no card.
+      const detalhes = [];
+      const idade = pegarIdade(card);
+      const raca = pegarRaca(card);
+      if (MENSAGEM_COM_IDADE && idade) detalhes.push("de " + idade);   // ex.: "de 2 anos"
+      if (MENSAGEM_COM_RACA && raca) detalhes.push("raça " + raca);    // ex.: "raça Husky Siberiano"
+      // join(", ") junta os itens com vírgula; sem detalhes, o texto fica vazio.
+      const textoDetalhes = detalhes.length > 0 ? ", " + detalhes.join(", ") + "," : "";
+      link.href = linkWhats("Olá! Vi " + artigo + " " + nome + textoDetalhes + " no site Patas de Casa e tenho interesse em " + pronome + ". Podemos conversar?");
     } else {
       // Contato e botão flutuante: mensagem geral.
       link.href = linkWhats(mensagemGeral);
