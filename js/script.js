@@ -46,6 +46,13 @@ function pegarNome(card) {
   return card.querySelector("h3").childNodes[0].textContent.trim();
 }
 
+// Devolve a raça do cão de um card (texto do item com a classe "raca", dentro da ficha).
+// Se o card não tiver ficha, devolve texto vazio e a busca continua funcionando só pelo nome.
+function pegarRaca(card) {
+  const item = card.querySelector(".raca");
+  return item ? item.textContent.trim() : "";
+}
+
 // Deixa o texto em minúsculas e sem acento, para a busca achar "algodao" e "Algodão".
 // normalize("NFD") separa a letra do acento; o replace apaga só os acentos.
 // A expressão /[\u0300-\u036f]/g encontra todos os símbolos de acento (o "g" vale para o texto inteiro).
@@ -133,11 +140,13 @@ function iniciarBusca() {
     // Texto digitado, sem espaços nas pontas, em minúsculas e sem acento.
     const termo = semAcento(campoBusca.value.trim());
 
-    // 1) Busca: o card sem o termo no nome ganha a classe "sem-busca" (o CSS o esconde).
-    // indexOf devolve -1 quando o termo não aparece dentro do nome.
+    // 1) Busca: o card sem o termo no nome E na raça ganha a classe "sem-busca" (o CSS o esconde).
+    // indexOf devolve -1 quando o termo não aparece dentro do texto.
     cartoes.forEach(function (card) {
       const nome = semAcento(pegarNome(card));
-      card.classList.toggle("sem-busca", termo !== "" && nome.indexOf(termo) === -1);
+      const raca = semAcento(pegarRaca(card));
+      const achou = nome.indexOf(termo) !== -1 || raca.indexOf(termo) !== -1;
+      card.classList.toggle("sem-busca", termo !== "" && !achou);
     });
 
     // 2) Contagem: conta os cards que continuam aparecendo.
