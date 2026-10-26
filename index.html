@@ -38,6 +38,7 @@
     <!-- Lista de links do menu. Cada href="#id" rola até a seção com aquele id. -->
     <ul class="menu" id="menu">
       <li><a href="#inicio">Início</a></li>
+      <li><a href="quem-somos.html">Quem somos</a></li>
       <li><a href="#caes">Nossos cães</a></li>
       <li><a href="#guia">Adoção responsável</a></li>
       <li><a href="#faq">Dúvidas</a></li>
@@ -84,10 +85,10 @@
     <div class="wrap">
       <p class="eyebrow">Nossos cães</p>
       <h2>Eles estão prontos para ir pra casa.</h2>
-      <!-- BUSCA POR NOME: o JavaScript esconde os cards que não têm o texto digitado. -->
+      <!-- BUSCA POR NOME OU RAÇA: o JavaScript esconde os cards que não têm o texto digitado. -->
       <div class="busca">
-        <label for="busca-nome">Buscar cão pelo nome</label>
-        <input type="search" id="busca-nome" placeholder="Ex.: Thor" autocomplete="off">
+        <label for="busca-nome">Buscar cão pelo nome ou raça</label>
+        <input type="search" id="busca-nome" placeholder="Ex.: Thor ou Husky" autocomplete="off">
       </div>
             <!-- FILTROS SEM JS: botões de rádio escondidos; o CSS usa :checked e :has() para filtrar. -->
             <div class="filtros" role="group" aria-label="Filtros dos cães">
@@ -137,6 +138,12 @@
           <div class="body">
             <h3>Leandro <small>2 anos</small></h3>
             <p>Médio · 14 kg · Sorocaba, SP</p>
+            <!-- FICHA: raça, pelagem e nível de energia. A busca do JavaScript também lê a raça (classe raca). -->
+            <dl class="ficha">
+              <div><dt>Raça</dt><dd class="raca">SRD (vira-lata)</dd></div>
+              <div><dt>Pelagem</dt><dd>Curta · caramelo e branco</dd></div>
+              <div><dt>Energia</dt><dd>Média</dd></div>
+            </dl>
             <div class="chips">
               <span class="chip">Brincalhão</span>
               <span class="chip">Leal</span>
@@ -164,6 +171,11 @@
           <div class="body">
             <h3>Pipoca <small>1 ano</small></h3>
             <p>Médio · 16 kg · Sorocaba, SP</p>
+            <dl class="ficha">
+              <div><dt>Raça</dt><dd class="raca">Border Collie</dd></div>
+              <div><dt>Pelagem</dt><dd>Média · preto e branco</dd></div>
+              <div><dt>Energia</dt><dd>Alta</dd></div>
+            </dl>
             <div class="chips">
               <span class="chip">Energética</span>
               <span class="chip">Inteligente</span>
@@ -187,6 +199,11 @@
           <div class="body">
             <h3>Luna <small>5 anos</small></h3>
             <p>Grande · 28 kg · Votorantim, SP</p>
+            <dl class="ficha">
+              <div><dt>Raça</dt><dd class="raca">SRD</dd></div>
+              <div><dt>Pelagem</dt><dd>Longa · branca com cabeça escura</dd></div>
+              <div><dt>Energia</dt><dd>Baixa</dd></div>
+            </dl>
             <div class="chips">
               <span class="chip">Calma</span>
               <span class="chip">Companheira</span>
@@ -211,6 +228,11 @@
           <div class="body">
             <h3>Nina <small>3 anos</small></h3>
             <p>Médio · 18 kg · Sorocaba, SP</p>
+            <dl class="ficha">
+              <div><dt>Raça</dt><dd class="raca">SRD</dd></div>
+              <div><dt>Pelagem</dt><dd>Curta · preta</dd></div>
+              <div><dt>Energia</dt><dd>Média</dd></div>
+            </dl>
             <div class="chips">
               <span class="chip">Carinhosa</span>
               <span class="chip">Tranquila</span>
@@ -235,6 +257,11 @@
           <div class="body">
             <h3>Thor <small>6 anos</small></h3>
             <p>Grande · 32 kg · Sorocaba, SP</p>
+            <dl class="ficha">
+              <div><dt>Raça</dt><dd class="raca">Pastor Alemão</dd></div>
+              <div><dt>Pelagem</dt><dd>Média · preto e fogo</dd></div>
+              <div><dt>Energia</dt><dd>Alta</dd></div>
+            </dl>
             <div class="chips">
               <span class="chip">Protetor</span>
               <span class="chip">Obediente</span>
@@ -259,6 +286,11 @@
           <div class="body">
             <h3>Biscoito <small>4 anos</small></h3>
             <p>Pequeno · 11 kg · Marília, SP</p>
+            <dl class="ficha">
+              <div><dt>Raça</dt><dd class="raca">Welsh Corgi Pembroke</dd></div>
+              <div><dt>Pelagem</dt><dd>Média · caramelo e branco</dd></div>
+              <div><dt>Energia</dt><dd>Média</dd></div>
+            </dl>
             <div class="chips">
               <span class="chip">Sociável</span>
               <span class="chip">Adora água</span>
@@ -283,6 +315,11 @@
           <div class="body">
             <h3>Chico <small>9 anos</small></h3>
             <p>Médio · 13 kg · Sorocaba, SP</p>
+            <dl class="ficha">
+              <div><dt>Raça</dt><dd class="raca">Cocker Spaniel</dd></div>
+              <div><dt>Pelagem</dt><dd>Longa · marrom e branco</dd></div>
+              <div><dt>Energia</dt><dd>Baixa</dd></div>
+            </dl>
             <div class="chips">
               <span class="chip">Sereno</span>
               <span class="chip">Ama bolinhas</span>
@@ -307,6 +344,11 @@
           <div class="body">
             <h3>Zeus <small>3 anos</small></h3>
             <p>Grande · 25 kg · Votorantim, SP</p>
+            <dl class="ficha">
+              <div><dt>Raça</dt><dd class="raca">Husky Siberiano</dd></div>
+              <div><dt>Pelagem</dt><dd>Densa · cinza e branco</dd></div>
+              <div><dt>Energia</dt><dd>Alta</dd></div>
+            </dl>
             <div class="chips">
               <span class="chip">Aventureiro</span>
               <span class="chip">Falante</span>
@@ -331,6 +373,11 @@
           <div class="body">
             <h3>Bento <small>7 anos</small></h3>
             <p>Pequeno · 8 kg · Marília, SP</p>
+            <dl class="ficha">
+              <div><dt>Raça</dt><dd class="raca">Pug</dd></div>
+              <div><dt>Pelagem</dt><dd>Curta · bege</dd></div>
+              <div><dt>Energia</dt><dd>Baixa</dd></div>
+            </dl>
             <div class="chips">
               <span class="chip">Sossegado</span>
               <span class="chip">Afetuoso</span>
@@ -355,6 +402,11 @@
           <div class="body">
             <h3>Fabricio <small>10 anos</small></h3>
             <p>Grande · 24 kg · Jaú, SP</p>
+            <dl class="ficha">
+              <div><dt>Raça</dt><dd class="raca">Vizsla</dd></div>
+              <div><dt>Pelagem</dt><dd>Curta · ruiva</dd></div>
+              <div><dt>Energia</dt><dd>Baixa</dd></div>
+            </dl>
             <div class="chips">
               <span class="chip">Gentil</span>
               <span class="chip">Paciente</span>
@@ -379,6 +431,11 @@
           <div class="body">
             <h3>Nuvem <small>5 meses</small></h3>
             <p>Médio · 8 kg · Sorocaba, SP</p>
+            <dl class="ficha">
+              <div><dt>Raça</dt><dd class="raca">Samoieda</dd></div>
+              <div><dt>Pelagem</dt><dd>Longa · branca</dd></div>
+              <div><dt>Energia</dt><dd>Alta</dd></div>
+            </dl>
             <div class="chips">
               <span class="chip">Fofa</span>
               <span class="chip">Sociável</span>
@@ -401,6 +458,11 @@
           <div class="body">
             <h3>Mel <small>4 meses</small></h3>
             <p>Grande · 10 kg · Sorocaba, SP</p>
+            <dl class="ficha">
+              <div><dt>Raça</dt><dd class="raca">Golden Retriever</dd></div>
+              <div><dt>Pelagem</dt><dd>Longa · dourada clara</dd></div>
+              <div><dt>Energia</dt><dd>Alta</dd></div>
+            </dl>
             <div class="chips">
               <span class="chip">Doce</span>
               <span class="chip">Brincalhona</span>
@@ -421,6 +483,11 @@
           <div class="body">
             <h3>Frida <small>2 anos</small></h3>
             <p>Pequeno · 7 kg · Sorocaba, SP</p>
+            <dl class="ficha">
+              <div><dt>Raça</dt><dd class="raca">Dachshund (Salsicha)</dd></div>
+              <div><dt>Pelagem</dt><dd>Curta · preta e fogo</dd></div>
+              <div><dt>Energia</dt><dd>Média</dd></div>
+            </dl>
             <div class="chips">
               <span class="chip">Independente</span>
               <span class="chip">Esperta</span>
@@ -601,11 +668,12 @@
     </div>
     <nav aria-label="Rodapé">
       <a href="#caes">Nossos cães</a>
+      <a href="quem-somos.html">Quem somos</a>
       <a href="#guia">Adoção responsável</a>
       <a href="#faq">Dúvidas</a>
       <a href="#sobre">Contato</a>
     </nav>
-    <p>© <span id="ano">2026</span> Projeto acadêmico de Web Design. Instituição e cães fictícios. Fotos: Dog API (dog.ceo), uso educacional.</p>
+    <p>© <span id="ano">2026</span> Projeto acadêmico de Web Design. Instituição e cães fictícios. Imagens meramente ilustrativas.</p>
   </div>
 </footer>
 
