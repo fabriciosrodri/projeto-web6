@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<!-- Página "Quem somos": usa o mesmo style.css e o mesmo js/script.js do index.html. -->
+<html lang="pt-BR">
+<head>
+  <!-- Codificação UTF-8: garante acentos e emojis corretos. -->
+  <meta charset="UTF-8">
+  <!-- Faz a página se ajustar à largura do celular. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Título da aba e descrição para buscadores (SEO): cada página tem os seus. -->
+  <title>Quem somos | Patas de Casa</title>
+  <meta name="description" content="Conheça a Patas de Casa: nossa história, missão, visão, valores e como resgatamos e damos um lar a cães em Sorocaba e região.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@800&family=Figtree:wght@400;600;700&display=swap">
+  <!-- CSS externo: o mesmo arquivo do index.html. -->
+  <link rel="stylesheet" href="style.css">
+  <!-- Define o tema ANTES da página ser desenhada (evita "piscar" de cor). -->
+  <script>
+    try {
+      var tema = localStorage.getItem("tema") || (matchMedia("(prefers-color-scheme: dark)").matches ? "escuro" : "claro");
+      document.documentElement.setAttribute("data-tema", tema);
+    } catch (erro) { /* sem localStorage: o script.js define o tema depois */ }
+  </script>
+</head>
+<body>
+
+<!-- CABEÇALHO igual ao do index.html. Os links usam index.html#id para voltar à página inicial na seção certa. -->
+<header class="site-header">
+  <nav class="wrap nav" aria-label="Menu principal">
+    <a class="logo" href="index.html">🐾 Patas de Casa</a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Abrir menu">☰</button>
+    <ul class="menu" id="menu">
+      <li><a href="index.html#inicio">Início</a></li>
+      <!-- aria-current="page" marca a página atual (leitores de tela leem isso e o CSS destaca o link). -->
+      <li><a href="quem-somos.html" aria-current="page">Quem somos</a></li>
+      <li><a href="index.html#caes">Nossos cães</a></li>
+      <li><a href="index.html#guia">Adoção responsável</a></li>
+      <li><a href="index.html#faq">Dúvidas</a></li>
+      <li><a href="index.html#divulgue">Divulgue um cão</a></li>
+      <li><a href="index.html#sobre">Contato</a></li>
+    </ul>
+    <button class="tema-toggle" type="button" aria-label="Ativar tema escuro">🌙</button>
+  </nav>
+</header>
+
+<main>
+  <!-- ABERTURA: título (h1) e foto. O id="inicio" é o destino do botão de voltar ao topo. -->
+  <section id="inicio" class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">Quem somos</p>
+        <h1>Somos a ONG que ajuda cães a voltar pra casa.</h1>
+        <p>A Patas de Casa resgata, cuida e encontra famílias para cães abandonados em Sorocaba e região.</p>
+        <div class="hero-actions">
+          <a class="btn" href="index.html#caes">Conheça nossos cães</a>
+          <a class="btn btn-outline" href="#missao">Nossa missão</a>
+        </div>
+      </div>
+      <img src="img/hero-brincando.jpg" alt="Dois filhotes de beagle brincando na grama">
+    </div>
+  </section>
+
+  <!-- NOSSA HISTÓRIA: texto corrido em uma coluna estreita (mais fácil de ler). -->
+  <section id="historia">
+    <div class="wrap texto-largo">
+      <p class="eyebrow">Nossa história</p>
+      <h2>Tudo começou com um grupo de voluntários.</h2>
+      <p>A Patas de Casa nasceu há seis anos, quando um pequeno grupo de voluntários começou a recolher cães abandonados nas ruas de Sorocaba e a procurar um lar para cada um deles.</p>
+      <p>No começo, os cães ficavam na casa dos próprios voluntários. Com o tempo, criamos uma rede de lares temporários, parcerias com veterinários e um processo de adoção que acompanha a família antes e depois da chegada do cão.</p>
+      <p>Hoje já foram 128 cães adotados. Cada adoção nos lembra o motivo pelo qual começamos: nenhum cão deveria ficar sem um lar.</p>
+    </div>
+  </section>
+
+  <!-- MISSÃO, VISÃO E VALORES: 3 cartões (reaproveita as classes help-grid e help do CSS). -->
+  <section id="missao">
+    <div class="wrap">
+      <p class="eyebrow">O que nos move</p>
+      <h2>Missão, visão e valores.</h2>
+      <div class="help-grid">
+        <article class="help">
+          <h3>Missão</h3>
+          <p>Resgatar cães em situação de abandono, cuidar da saúde deles e encontrar famílias preparadas para recebê-los.</p>
+        </article>
+        <article class="help">
+          <h3>Visão</h3>
+          <p>Ser referência em adoção responsável em Sorocaba e região, com cada vez menos cães nas ruas.</p>
+        </article>
+        <article class="help">
+          <h3>Valores</h3>
+          <ul class="lista-valores">
+            <li>Respeito aos animais</li>
+            <li>Adoção consciente</li>
+            <li>Transparência</li>
+            <li>Trabalho voluntário</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMO TRABALHAMOS: 4 passos em lista ordenada (ol), igual ao guia do index.html. -->
+  <section id="trabalho">
+    <div class="wrap">
+      <p class="eyebrow">Como trabalhamos</p>
+      <h2>Do resgate à adoção, passo a passo.</h2>
+      <ol class="steps">
+        <li><h3>Resgate</h3><p>Recolhemos o cão e avaliamos como ele está.</p></li>
+        <li><h3>Cuidado</h3><p>Vacinas, castração, microchip e tratamento veterinário.</p></li>
+        <li><h3>Lar temporário</h3><p>Ele vive em família até aprender a confiar de novo.</p></li>
+        <li><h3>Adoção</h3><p>Conversa, visita e termo de adoção acompanhados pela equipe.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- NÚMEROS: mesma faixa do index.html (o JavaScript anima a contagem quando ela aparece na tela). -->
+  <div class="stats">
+    <div class="wrap">
+      <div><strong>128</strong>cães adotados</div>
+      <div><strong>12</strong>esperando um lar</div>
+      <div><strong>34</strong>lares temporários</div>
+      <div><strong>6</strong>anos de resgates</div>
+    </div>
+  </div>
+
+  <!-- EQUIPE DO PROJETO: quem desenvolveu este site. -->
+  <section id="equipe">
+    <div class="wrap">
+      <p class="eyebrow">Equipe do projeto</p>
+      <h2>Quem desenvolveu este site.</h2>
+      <p>Projeto acadêmico de Web Design, feito em grupo com HTML, CSS e JavaScript.</p>
+      <div class="help-grid">
+        <article class="help">
+          <h3>Fabricio Souza Rodrigues</h3>
+          <p>Desenvolvimento do site</p>
+        </article>
+        <article class="help">
+          <h3>Leandro Gustavo Pacheco Cruz</h3>
+          <p>Desenvolvimento do site</p>
+        </article>
+        <article class="help">
+          <h3>Leonard Modesto Rosa</h3>
+          <p>Desenvolvimento do site</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHAMADA FINAL: cartão escuro com dois botões. O id="sobre" é o mesmo do index.html. -->
+  <section id="sobre">
+    <div class="wrap">
+      <div class="contact center">
+        <p class="eyebrow" style="color: var(--accent);">Faça parte</p>
+        <h2>Quer adotar, ajudar ou ser voluntário?</h2>
+        <p>Fale com a nossa equipe. Atendimento de segunda a sábado, das 9h às 18h.</p>
+        <div class="contact-actions">
+          <a class="btn btn-whats" href="https://wa.me/5514996895439">Chamar no WhatsApp</a>
+          <a class="btn btn-outline" href="index.html#caes">Ver cães disponíveis</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- RODAPÉ igual ao do index.html. O número do ano é preenchido pelo JavaScript. -->
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div>
+      <strong>🐾 Patas de Casa</strong>
+      <p>Adoção responsável de cães em Sorocaba e região.</p>
+    </div>
+    <nav aria-label="Rodapé">
+      <a href="index.html#caes">Nossos cães</a>
+      <a href="quem-somos.html">Quem somos</a>
+      <a href="index.html#faq">Dúvidas</a>
+      <a href="index.html#sobre">Contato</a>
+    </nav>
+    <p>© <span id="ano">2026</span> Projeto acadêmico de Web Design. Instituição e cães fictícios. Imagens meramente ilustrativas.</p>
+  </div>
+</footer>
+
+<aside aria-label="Atalhos">
+  <a class="topo" href="#inicio" aria-label="Voltar ao topo">↑</a>
+  <a class="whats-float" href="https://wa.me/5514996895439" aria-label="Falar com a equipe pelo WhatsApp">WA</a>
+</aside>
+
+<!-- JavaScript: o mesmo script do index.html (cada função confere se os elementos existem, então não dá erro aqui). -->
+<script src="js/script.js"></script>
+
+</body>
+</html>
