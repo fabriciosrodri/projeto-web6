@@ -686,3 +686,11 @@ summary { padding-block: 0.65rem; cursor: pointer; }
 .lista-valores li + li {
   margin-top: 0.3rem;
 }
+
+/* ---------- Otimização de imagens ---------- */
+/* As imagens agora têm width e height no HTML (o navegador reserva o espaço antes de carregar e a página não "pula").
+   Sem esta regra, o atributo height da foto principal viraria uma altura fixa de 1000px e distorceria o layout.
+   Com height: auto, vale a proporção (aspect-ratio) definida em .hero img. */
+.hero img {
+  height: auto;
+}
